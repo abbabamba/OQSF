@@ -1,24 +1,26 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import SimulatorPage from './pages/Simulator';
+import HomePage from './pages/HomePage';
+import Header from './components/Header';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Header />
+        <main className="App-main">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/simulator" element={<SimulatorPage />} />
+          </Routes>
+        </main>
+        <footer className="App-footer">
+          <p>© 2024 Simulateur de Prêt Bancaire. Tous droits réservés.</p>
+        </footer>
+      </div>
+    </Router>
   );
 }
 

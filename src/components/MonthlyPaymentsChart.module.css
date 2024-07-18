@@ -1,0 +1,37 @@
+.chartContainer {
+    background-color: #f0f8f0;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .chartTitle {
+    color: #2e7d32;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  
+  .cartesianGrid {
+    stroke: #c8e6c9;
+  }
+  
+  .textColor {
+    color: #1b5e20;
+  }
+  
+  .tooltipBackground {
+    background-color: #e8f5e9;
+  }
+  
+  .lineColor {
+    color: #4caf50;
+  }
+  
+  .activeDotColor {
+    color: #f44336;
+  }
+  
+  .dotColor {
+    color: #ffeb3b;
+  }

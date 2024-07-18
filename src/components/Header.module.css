@@ -1,0 +1,103 @@
+.header {
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.headerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo img {
+  height: 50px;
+  width: auto;
+}
+
+.nav {
+  display: flex;
+}
+
+.menu {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menuItem {
+  margin-left: 1.5rem;
+}
+
+.menuLink {
+  color: #006634;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.menuLink:hover {
+  color: #fcd116;
+}
+
+.menuButton {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #006634;
+}
+
+@media (max-width: 768px) {
+  .menuButton {
+    display: block;
+  }
+
+  .nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: none;
+    flex-direction: column;
+    padding: 1rem 0;
+  }
+
+  .menuOpen {
+    display: flex;
+  }
+
+  .menu {
+    flex-direction: column;
+  }
+
+  .menuItem {
+    margin: 0;
+  }
+
+  .menuLink {
+    display: block;
+    padding: 0.75rem 2rem;
+  }
+
+  .menuLink:hover {
+    background-color: #f0f0f0;
+  }
+}
+
+/* Ajout d'une barre de couleurs du drapeau sénégalais */
+.header::after {
+  content: '';
+  display: block;
+  height: 4px;
+  background: linear-gradient(to right, #006634 33.33%, #fcd116 33.33% 66.66%, #ce1126 66.66%);
+}
