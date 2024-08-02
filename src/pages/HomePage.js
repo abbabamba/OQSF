@@ -1,78 +1,113 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Card } from '../components/common/Card';
 import { Button } from '../components/common/Button';
+import habibImage from './habib.png';
+import { ArrowRight, BarChart2, Calculator } from 'lucide-react';
 import styles from './HomePage.module.css';
+import { Link } from 'react-router-dom';
 
 const HomePage = () => {
+  useEffect(() => {
+    // Ajouter le script du bot
+    const script = document.createElement('script');
+    script.src = "https://bots.easy-peasy.ai/chat.min.js";
+    script.setAttribute('data-chat-url', 'https://bots.easy-peasy.ai/bot/f2265627-a6fe-4f29-a858-0c9ef300b603');
+    script.setAttribute('data-btn-position', 'bottom-right');
+    script.setAttribute('data-widget-btn-color', '#114929');
+    script.defer = true;
+    document.body.appendChild(script);
+
+    // Nettoyage
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   return (
-    <div className={styles.container}>
-      <section className={styles.intro}>
-        <h1>Bienvenue sur le Simulateur de Prêt Bancaire de l'OQSF</h1>
-        <p>Apprenez les notions de base sur les prêts bancaires et utilisez notre simulateur pour planifier vos finances.</p>
-        <Button onClick={() => window.location.href = '/simulator'}>Commencer la Simulation</Button>
-      </section>
-
-      <section className={styles.section}>
-        <h2>Les notions de base des prêts bancaires</h2>
-        <div className={styles.cardContainer}>
-          <Card className={styles.card}>
-            <h3>Durée du prêt</h3>
-            <p>La durée du prêt est la période pendant laquelle vous devez rembourser le prêt. Elle est généralement exprimée en années.</p>
-          </Card>
-          <Card className={styles.card}>
-            <h3>Taux d'intérêt</h3>
-            <p>Le taux d'intérêt est le pourcentage que la banque facture pour vous prêter de l'argent. Il peut être fixe ou variable.</p>
-          </Card>
-          <Card className={styles.card}>
-            <h3>Paiements mensuels</h3>
-            <p>Les paiements mensuels sont les montants que vous devez payer chaque mois pour rembourser le prêt.</p>
-          </Card>
+    <div className={styles.pageContainer}>
+      <header className={styles.header}>
+        <div className="container mx-auto px-4">
+          <h1 className={styles.title}>
+            L'OBSERVATOIRE DE LA QUALITÉ DES SERVICES FINANCIERS /SÉNÉGAL
+          </h1>
         </div>
-      </section>
-
-      <section className={styles.section}>
-        <h2>Comment fonctionne un prêt bancaire ?</h2>
-        <div className={styles.cardContainer}>
+      </header>
+  
+      <main className="container mx-auto px-4 py-8">
+        <section className="mb-12 text-center">
           <Card className={styles.card}>
-            <h3>Demande de prêt</h3>
-            <p>Pour obtenir un prêt, vous devez soumettre une demande à la banque, qui évaluera votre solvabilité.</p>
+            <div className="p-6">
+              <p className="text-xl text-gray-700 leading-relaxed">
+                L'Observatoire de la Qualité des Services Financiers (OQSF/Sénégal) est un organisme consultatif créé par décret n° 2009-95 du 06 février 2009, placé sous l'autorité du Ministère des Finances et du Budget
+              </p>
+            </div>
           </Card>
+        </section>
+  
+        <section className="mb-12">
+          <h2 className={`${styles.sectionTitle} text-3xl font-semibold mb-6 text-center`}>MINISTRE DES FINANCES ET DU BUDGET</h2>
           <Card className={styles.card}>
-            <h3>Approbation et décaissement</h3>
-            <p>Si votre demande est approuvée, la banque vous remettra les fonds du prêt.</p>
+            <div className="p-6 flex flex-col items-center">
+              <p className="text-2xl font-medium text-green-600 mb-4">L'OQSF, ÉPICENTRE DE L'INCLUSION FINANCIÈRE</p>
+              <img src={habibImage} alt="Ministre des Finances" className={`${styles.ministerImage} w-48 h-48 rounded-full shadow-md mb-4`} />
+              <p className="text-xl font-medium">Habib NDAO</p>
+            </div>
           </Card>
+        </section>
+  
+        <section className="mb-12">
+          <h2 className={`${styles.sectionTitle} text-3xl font-semibold mb-6 text-center`}>Le mot du Secrétaire Exécutif</h2>
           <Card className={styles.card}>
-            <h3>Remboursement</h3>
-            <p>Vous devrez rembourser le prêt selon les termes convenus, y compris les intérêts.</p>
+            <div className="p-6">
+              <p className="text-gray-700 mb-4 leading-relaxed">
+                La mise en place de l'Observatoire de la Qualité des Services Financiers (OQSF) qui constitue la première expérience du genre dans l'espace de l'Union Économique et Monétaire Ouest Africaine (UEMOA), répond à la volonté des pouvoirs publics de promouvoir l'inclusion financière, de réduire l'incompréhension et la méfiance dans la relation entre les prestataires de ces services financiers et leurs clients ou usagers, y compris à travers la mission de médiation financière.
+              </p>
+              <p className="text-gray-700 leading-relaxed">
+                Dans un contexte marqué par la mise en œuvre du Plan Sénégal Emergent (PSE) où la promotion du Low Income Banking (LIB) et du Low Income Insurance (LII) y occupent une place centrale, l'Observatoire de la Qualité des Services Financiers (OQSF) entend jouer pleinement le rôle d'épicentre en vue de renforcer son cadre stratégique d'intervention dans l'écosystème pour une grande inclusion financière à travers l'amélioration continue de la qualité des services financiers, la mission de veille, la vulgarisation des meilleures pratiques par le biais d'un programme d'éducation financière de masse et une protection efficiente des clients grâce au dispositif gratuit de médiation.
+              </p>
+            </div>
           </Card>
-        </div>
-      </section>
-
-      <section className={styles.section}>
-        <h2>Conseils pour gérer vos prêts</h2>
-        <div className={styles.cardContainer}>
-          <Card className={styles.card}>
-            <h3>Planifiez vos paiements</h3>
-            <p>Assurez-vous que vos paiements mensuels sont abordables et planifiez-les dans votre budget.</p>
-          </Card>
-          <Card className={styles.card}>
-            <h3>Surveillez les taux d'intérêt</h3>
-            <p>Restez informé des taux d'intérêt et envisagez de refinancer votre prêt si les taux baissent.</p>
-          </Card>
-          <Card className={styles.card}>
-            <h3>Consultez un conseiller financier</h3>
-            <p>Un conseiller financier peut vous aider à gérer vos prêts et à optimiser vos finances.</p>
-          </Card>
-        </div>
-      </section>
-
-      <section className={styles.cta}>
-        <h2>Comparer les Prêts Bancaires</h2>
-        <p>Utilisez notre comparateur pour évaluer différentes options de prêt et trouver celle qui vous convient le mieux.</p>
-        <Button onClick={() => window.location.href = '/comparateur'}>Accéder au Comparateur</Button>
-      </section>
+        </section>
+  
+        <section className="mb-12">
+          <h2 className={`${styles.sectionTitle} text-3xl font-semibold mb-6 text-center`}>COMPARATEUR ET SIMULATEUR DE CRÉDIT</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <Card className={`${styles.toolCard} ${styles.card}`}>
+              <div className="p-6 flex flex-col items-center">
+                <Calculator className={`${styles.toolIcon} mb-4`} />
+                <h3 className="text-2xl font-semibold mb-4 text-green-700">Simulateur</h3>
+                <p className="text-gray-700 mb-6 text-center">
+                  Estimez vos mensualités et le coût total de votre crédit en quelques clics.
+                </p>
+                <Link to="/simulator">
+                <Button className={styles.button}>
+                  Lancer le simulateur
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Button></Link>
+              </div>
+            </Card>
+            <Card className={`${styles.toolCard} ${styles.card}`}>
+              <div className="p-6 flex flex-col items-center">
+                <BarChart2 className={`${styles.toolIcon} mb-4`} />
+                <h3 className="text-2xl font-semibold mb-4 text-green-700">Comparateur</h3>
+                <p className="text-gray-700 mb-6 text-center">
+                  Comparez les offres des différentes banques pour trouver le meilleur crédit.
+                </p>
+                <Link to="/comparateur">
+                <Button className={styles.button} >
+                  Comparer les offres
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Button></Link>
+              </div>
+            </Card>
+          </div>
+        </section>
+      </main>
     </div>
   );
 };
 
 export default HomePage;
+
+
+

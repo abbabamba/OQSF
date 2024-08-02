@@ -1,105 +1,211 @@
-.container {
+/* HomePage.module.css */
+.pageContainer {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f0f4f8 0%, #ffffff 100%);
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.header {
+  background: linear-gradient(90deg, #006634 0%, #008d46 100%);
+  padding: 2rem 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 2.5rem;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.title:hover {
+  transform: scale(1.05);
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 102, 52, 0.2);
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.ministerImage {
+  border: 4px solid #006634;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.ministerImage:hover {
+  transform: scale(1.05) rotate(5deg);
+  border-color: #008d46;
+}
+
+.sectionTitle {
+  color: #006634;
+  position: relative;
+  display: inline-block;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  text-align: center;
+  width: 100%;
+}
+
+.sectionTitle::after {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 3px;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(to right, #006634, #fcd116, #ce1126);
+  transition: all 0.3s ease;
+}
+
+.sectionTitle:hover::after {
+  width: 100px;
+}
+
+.toolCard {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 102, 52, 0.3);
+  padding: 2rem;
+}
+
+.toolCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.toolIcon {
+  font-size: 3.5rem;
+  color: #006634;
+  transition: all 0.3s ease;
+}
+
+.toolCard:hover .toolIcon {
+  transform: rotate(15deg) scale(1.1);
+  color: #008d46;
+}
+
+.button {
+  background: linear-gradient(90deg, #006634 0%, #008d46 100%);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(90deg, #008d46 0%, #006634 100%);
+}
+
+.button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem;
+  }
+  
+  .toolCard {
+    margin-bottom: 2rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.8rem;
+  }
+}
+
+/* Ajouts pour améliorer l'accessibilité et l'expérience utilisateur */
+.card p, .toolCard p {
+  line-height: 1.6;
+  color: #333;
+}
+
+.toolCard h3 {
+  color: #006634;
+  transition: color 0.3s ease;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.toolCard:hover h3 {
+  color: #008d46;
+}
+
+/* Animation subtile pour le contenu principal */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+main {
+  animation: fadeIn 1s ease-out;
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
 }
 
-.intro {
-  text-align: center;
-  margin-bottom: 3rem;
-  background: linear-gradient(135deg, #006634, #fcd116);
-  padding: 3rem;
-  border-radius: 10px;
-  color: white;
+/* Ajout d'un effet de hover sur les paragraphes pour améliorer la lisibilité */
+.card p:hover, .toolCard p:hover {
+  background-color: #f0f4f8;
+  transition: background-color 0.3s ease;
 }
 
-.intro h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.intro p {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-}
-
-.section {
-  margin-bottom: 3rem;
-}
-
-.section h2 {
+/* Ajout d'un effet de soulignement pour les liens */
+a:not(.button) {
   color: #006634;
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  text-align: center;
+  text-decoration: none;
+  position: relative;
 }
 
-.cardContainer {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
+a:not(.button)::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: #006634;
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.3s ease-in-out;
 }
 
-.card {
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 1.5rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-.card h3 {
-  color: #ce1126;
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
-}
-
-.card p {
-  color: #333;
-  font-size: 1rem;
-  line-height: 1.6;
-}
-
-.cta {
-  text-align: center;
-  margin-top: 3rem;
-}
-
-.cta h2 {
-  color: #006634;
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.cta p {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-  color: #333;
-}
-
-@media (max-width: 768px) {
-  .container {
-    padding: 1rem;
-  }
-  
-  .intro {
-    padding: 2rem 1rem;
-  }
-  
-  .intro h1 {
-    font-size: 2rem;
-  }
-  
-  .section h2 {
-    font-size: 1.8rem;
-  }
-  
-  .cardContainer {
-    grid-template-columns: 1fr;
-  }
+a:not(.button):hover::after {
+  visibility: visible;
+  transform: scaleX(1);
 }

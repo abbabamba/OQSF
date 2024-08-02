@@ -1,0 +1,205 @@
+/* BankComparator.module.css */
+.container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  font-family: 'Arial', sans-serif;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  text-align: center;
+  color: #006634;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(to right, #006634, #fcd116, #ce1126);
+}
+
+.filters {
+  margin-bottom: 2rem;
+  background-color: #f0f4f8;
+  padding: 1.5rem;
+  border-radius: 10px;
+}
+
+.filters h2 {
+  color: #006634;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.filterOptions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #2c3e50;
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.checkboxLabel:hover {
+  color: #006634;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.checkbox {
+  display: none;
+}
+
+.checkboxCustom {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #006634;
+  border-radius: 4px;
+  margin-right: 10px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.checkbox:checked + .checkboxCustom {
+  background-color: #006634;
+}
+
+.checkbox:checked + .checkboxCustom::after {
+  content: '\2714';
+  font-size: 14px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ffffff;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  border: 2px solid #006634;
+  border-radius: 25px;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.searchInput:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(0, 102, 52, 0.3);
+}
+
+.tableContainer {
+  overflow-x: auto;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.bankTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.bankTable th {
+  background-color: #006634;
+  color: white;
+  padding: 1rem;
+  text-align: left;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.bankTable th:first-child {
+  border-top-left-radius: 10px;
+}
+
+.bankTable th:last-child {
+  border-top-right-radius: 10px;
+}
+
+.bankRow {
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+.bankRow:hover {
+  background-color: #f0f4f8;
+}
+
+.bankName {
+  font-weight: bold;
+  color: #006634;
+  padding: 1rem;
+}
+
+.bankInfo {
+  padding: 1rem;
+  color: #2c3e50;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bankRow {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .filters h2 {
+    font-size: 1.2rem;
+  }
+
+  .checkboxLabel {
+    font-size: 0.9rem;
+  }
+
+  .searchInput {
+    padding: 0.8rem 1.2rem;
+  }
+
+  .bankTable th,
+  .bankName,
+  .bankInfo {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+}

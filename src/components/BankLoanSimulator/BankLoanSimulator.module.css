@@ -35,6 +35,7 @@ body {
   margin-bottom: 2rem;
   text-transform: uppercase;
   letter-spacing: 1px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .form {
@@ -75,6 +76,7 @@ body {
   padding: 0.5rem;
   background-color: rgba(206, 17, 38, 0.1);
   border-radius: 5px;
+  text-align: center;
 }
 
 .resultContainer {
@@ -131,6 +133,9 @@ body {
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .button:hover {
@@ -145,6 +150,46 @@ body {
 
 .resetButton:hover {
   background-color: #b80f21;
+}
+
+.buttonIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.tabList {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 1rem;
+}
+
+.tab {
+  flex: 1;
+  padding: 1rem;
+  text-align: center;
+  background-color: #ecf0f1;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 5px 5px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.tab:hover {
+  background-color: #bdc3c7;
+}
+
+.tab[aria-selected='true'] {
+  background-color: white;
+  font-weight: bold;
+}
+
+.tabIcon {
+  width: 20px;
+  height: 20px;
 }
 
 @media (max-width: 768px) {
@@ -171,5 +216,10 @@ body {
 
   .button {
     width: 100%;
+  }
+
+  .tab {
+    padding: 0.5rem;
+    font-size: 0.9rem;
   }
 }

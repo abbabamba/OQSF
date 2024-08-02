@@ -1,23 +1,30 @@
+/* Header.module.css */
 .header {
   background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
   z-index: 1000;
+  transition: all 0.3s ease;
 }
 
 .headerContent {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 0.75rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .logo img {
-  height: 50px;
+  height: 60px;
   width: auto;
+  transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+  transform: scale(1.05);
 }
 
 .nav {
@@ -33,6 +40,7 @@
 
 .menuItem {
   margin-left: 1.5rem;
+  position: relative;
 }
 
 .menuLink {
@@ -40,11 +48,27 @@
   text-decoration: none;
   font-weight: 600;
   font-size: 1rem;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
+  padding: 0.5rem 0;
 }
 
 .menuLink:hover {
   color: #fcd116;
+}
+
+.menuLink::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #fcd116;
+  transition: width 0.3s ease;
+}
+
+.menuLink:hover::after {
+  width: 100%;
 }
 
 .menuButton {
@@ -53,9 +77,35 @@
   border: none;
   cursor: pointer;
   color: #006634;
+  transition: color 0.3s ease;
+}
+
+.menuButton:hover {
+  color: #fcd116;
+}
+
+/* Barre de couleurs du drapeau sénégalais */
+.header::after {
+  content: '';
+  display: block;
+  height: 3px;
+  background: linear-gradient(to right, 
+    #006634 0%, #006634 33.33%, 
+    #fcd116 33.33%, #fcd116 66.66%, 
+    #ce1126 66.66%, #ce1126 100%);
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.header:hover::after {
+  opacity: 1;
 }
 
 @media (max-width: 768px) {
+  .headerContent {
+    padding: 0.5rem 1rem;
+  }
+
   .menuButton {
     display: block;
   }
@@ -70,6 +120,7 @@
     display: none;
     flex-direction: column;
     padding: 1rem 0;
+    transition: all 0.3s ease;
   }
 
   .menuOpen {
@@ -92,12 +143,18 @@
   .menuLink:hover {
     background-color: #f0f0f0;
   }
+
+  .menuLink::after {
+    display: none;
+  }
 }
 
-/* Ajout d'une barre de couleurs du drapeau sénégalais */
-.header::after {
-  content: '';
-  display: block;
-  height: 4px;
-  background: linear-gradient(to right, #006634 33.33%, #fcd116 33.33% 66.66%, #ce1126 66.66%);
+/* Animation pour l'ouverture du menu mobile */
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.menuOpen {
+  animation: slideDown 0.3s ease forwards;
 }

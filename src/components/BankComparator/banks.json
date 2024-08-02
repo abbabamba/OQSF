@@ -1,0 +1,153 @@
+{
+    "banks": [
+      {
+        "name": "BICIS",
+        "conditions_opening": {
+          "requirements": [
+            "Photocopie de carte d'identité valide",
+            "Justificatif de domicile",
+            "Deux photos"
+          ],
+          "procedure": "En ligne ou en agence"
+        },
+        "conditions_closing": "Demande en agence et formalités nécessaires",
+        "account_management": {
+          "services": [
+            "Consultation des transactions",
+            "Gestion des comptes via BICISNET"
+          ],
+          "fees": "Variable selon le type de compte"
+        },
+        "payment_methods": ["Carte Visa Classic"],
+        "online_management": {
+          "platform": "BICISNET",
+          "access": "Numéro client et mot de passe"
+        },
+        "credit_card": "Carte Visa Classic",
+        "mobile_app": "Accès via l'application BICISNET"
+      },
+      {
+        "name": "CBAO",
+        "conditions_opening": {
+          "requirements": [
+            "Photocopie de carte d'identité valide",
+            "Justificatif de domicile",
+            "Dépôt initial minimum de 25 000 FCFA"
+          ],
+          "procedure": "En ligne ou en agence"
+        },
+        "conditions_closing": "Demande écrite nécessaire",
+        "account_management": {
+          "services": [
+            "Comptes épargne",
+            "Comptes courants"
+          ],
+          "fees": "Variable selon le type de compte"
+        },
+        "payment_methods": ["Visa Classic", "Visa Gold", "Carte Prépayée Kalpé"],
+        "online_management": {
+          "platform": "e-banking",
+          "access": "SG Connect"
+        },
+        "credit_card": ["Visa Classic", "Visa Gold"],
+        "mobile_app": "SG Connect"
+      },
+      {
+        "name": "Banque de l'Habitat du Sénégal (BHS)",
+        "conditions_opening": {
+          "requirements": [
+            "Photocopie de carte d'identité",
+            "Justificatif de domicile"
+          ],
+          "procedure": "En agence"
+        },
+        "conditions_closing": "Compte inactif après 12 mois sans opérations",
+        "account_management": {
+          "services": [
+            "BHSNet"
+          ],
+          "fees": "Variable selon les services"
+        },
+        "payment_methods": ["Cartes prépayées", "Chéquiers"],
+        "online_management": {
+          "platform": "BHSNet",
+          "access": "Espace client"
+        },
+        "credit_card": "Non spécifié",
+        "mobile_app": "Non spécifié"
+      },
+    
+      {
+        "name": "Société Générale Sénégal (SGS)",
+        "conditions_opening": {
+          "requirements": [
+            "Pièce d'identité",
+            "Justificatif de domicile",
+            "Justificatif de revenus"
+          ],
+          "procedure": "En ligne ou en agence"
+        },
+        "conditions_closing": "Demande en agence ou par écrit",
+        "account_management": {
+          "services": [
+            "SG Connect"
+          ],
+          "fees": "1 000 FCFA HT par mois"
+        },
+        "payment_methods": ["Visa Classic Business", "Visa Gold Business"],
+        "online_management": {
+          "platform": "SG Connect",
+          "access": "En ligne"
+        },
+        "credit_card": ["Visa Classic", "Visa Gold"],
+        "mobile_app": "SG Connect"
+      },
+      {
+        "name": "Banque Agricole du Sénégal",
+        "conditions_opening": {
+          "requirements": [
+            "Pièce d'identité",
+            "Justificatif de domicile"
+          ],
+          "procedure": "En agence ou en ligne"
+        },
+        "conditions_closing": "Demande en agence",
+        "account_management": {
+          "services": [
+            "Gestion des comptes via plateforme web"
+          ],
+          "fees": "Variable selon les services"
+        },
+        "payment_methods": ["Cartes de débit", "Cartes de crédit"],
+        "online_management": {
+          "platform": "Application mobile",
+          "access": "Site web et application"
+        },
+        "credit_card": "Cartes de crédit disponibles",
+        "mobile_app": "Application mobile Banque Agricole"
+      },
+      {
+        "name": "Banque Islamique du Sénégal (BIS)",
+        "conditions_opening": {
+          "requirements": "Non spécifié",
+          "procedure": "En agence"
+        },
+        "conditions_closing": "Demande en agence",
+        "account_management": {
+          "services": [
+            "E-banking",
+            "SMS-Banking"
+          ],
+          "fees": "Variable selon les services"
+        },
+        "payment_methods": ["Cartes prépayées"],
+        "online_management": {
+          "platform": "Tamweel Touch",
+          "access": "Application mobile"
+        },
+        "credit_card": "Cartes prépayées",
+        "mobile_app": "Tamweel Touch"
+      }
+    ]
+  }
+  
