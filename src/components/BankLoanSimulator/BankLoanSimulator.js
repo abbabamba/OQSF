@@ -54,6 +54,7 @@ const BankLoanSimulator = () => {
   };
 
   return (
+    <div className={styles.backgroundContainer}>
     <Card className={styles.container}>
       <motion.h1 className={styles.title} {...fadeInUp}>
         Simulateur de Prêt Bancaire OQSF
@@ -173,6 +174,7 @@ const BankLoanSimulator = () => {
         )}
       </AnimatePresence>
     </Card>
+    </div>
   );
 };
 
