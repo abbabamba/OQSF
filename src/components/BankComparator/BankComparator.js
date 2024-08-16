@@ -1,5 +1,4 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../common/Table";
 import { Search, ChevronDown, ChevronUp, Moon, Sun, Info, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import banksData from './banks.json';
@@ -242,47 +241,58 @@ const ComparateurBanques = () => {
       </motion.div>
       
       <div className={styles.tableWrapper}>
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead className={styles.tableHeaderCell}>Critères de comparaison</TableHead>
-              {banksToCompare.map((bankName) => (
-                <TableHead 
-                  key={bankName}
-                  className={styles.tableHeaderCell}
-                  onClick={() => requestSort(bankName)}
-                >
-                  <div className={styles.bankHeaderContent}>
-                    {bankName}
-                    {sortConfig.key === bankName && (
-                      <span className={styles.sortIcon}>
-                        {sortConfig.direction === 'ascending' ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-                      </span>
-                    )}
-                  </div>
-                </TableHead>
-              ))}
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {filteredFields.map(({ category, field }) => (
-              <TableRow key={`${category}-${field}`} className={styles.tableRow}>
-                <TableCell className={styles.tableCell}>
-                  {field}
-                </TableCell>
-                {banksToCompare.map((bankName) => {
-                  const bank = sortedBanks.find(b => b.name === bankName);
-                  return (
-                    <TableCell key={bankName} className={styles.tableCell}>
-                      {bank[category]?.[field] || "Non disponible"}
-                    </TableCell>
-                  );
-                })}
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </div>
+  <table>
+    <thead>
+      <tr>
+        <th className={`${styles.tableHeaderCell} ${styles.criteriaColumn}`}>
+          Critères de comparaison
+        </th>
+        {banksToCompare.map((bankName) => (
+          <th
+            key={bankName}
+            className={`${styles.tableHeaderCell} ${styles.bankColumn}`}
+            onClick={() => requestSort(bankName)}
+          >
+            <div className={styles.bankHeaderContent}>
+              {bankName}
+              {sortConfig.key === bankName && (
+                <span className={styles.sortIcon}>
+                  {sortConfig.direction === 'ascending' ? (
+                    <ChevronUp size={16} />
+                  ) : (
+                    <ChevronDown size={16} />
+                  )}
+                </span>
+              )}
+            </div>
+          </th>
+        ))}
+      </tr>
+    </thead>
+    <tbody>
+      {filteredFields.map(({ category, field }) => (
+        <tr key={`${category}-${field}`} className={styles.tableRow}>
+          <td className={`${styles.tableCell} ${styles.criteriaColumn}`}>
+            {field}
+          </td>
+          {banksToCompare.map((bankName) => {
+            const bank = sortedBanks.find((b) => b.name === bankName);
+            return (
+              <td
+                key={bankName}
+                className={`${styles.tableCell} ${styles.bankColumn}`}
+              >
+                {bank[category]?.[field] || 'Non disponible'}
+              </td>
+            );
+          })}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+    
     </div>
   );
 };

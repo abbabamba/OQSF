@@ -54,7 +54,7 @@
   
   .input:focus {
     outline: none;
-    border-color: #4a90e2;
+    border-color: #0cee6e;
     box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
   }
   
@@ -67,7 +67,7 @@
   }
   
   .button {
-    background-color: #4a90e2;
+    background-color: #114929;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -81,7 +81,7 @@
   }
   
   .button:hover {
-    background-color: #3a7bc8;
+    background-color: #0cee6e;
   }
   
   .button:disabled {

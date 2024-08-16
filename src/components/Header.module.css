@@ -7,6 +7,7 @@
   background-color: rgba(255, 255, 255, 0.95);
   transition: all 0.3s ease-in-out;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border: salmon 5px #114929;
 }
 
 .scrolled {
@@ -69,12 +70,12 @@
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: #007bff;
+  background-color: #25a25a;
   transition: width 0.3s ease;
 }
 
 .menuLink:hover {
-  color: #007bff;
+  color: #114929;
 }
 
 .menuLink:hover::after {

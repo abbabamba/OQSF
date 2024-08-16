@@ -4,10 +4,10 @@ import AmortizationTable from './AmortizationTable';
 import { Card } from '../common/Card';
 import { Button } from '../common/Button';
 import useLoanCalculator from '../../hooks/useLoanCalculator';
-import MonthlyPaymentsChart from '../MonthlyPaymentsChart';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
-import { DollarSign, RefreshCw, BarChart2, Table } from 'lucide-react';
+import { DollarSign, RefreshCw, BarChart2, Table, PieChart } from 'lucide-react';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart as RechartsPieChart, Pie, Cell } from 'recharts';
 import styles from './BankLoanSimulator.module.css';
 
 const BankLoanSimulator = () => {
@@ -31,8 +31,20 @@ const BankLoanSimulator = () => {
 
   const monthlyPaymentsData = amortizationSchedule.map((entry, index) => ({
     month: index + 1,
-    paiement: entry.payment || 0
+    paiement: entry.payment || 0,
+    principal: entry.principal || 0,
+    interest: entry.interest || 0
   }));
+
+  const totalInterest = amortizationSchedule.reduce((sum, entry) => sum + entry.interest, 0);
+  const totalPrincipal = amortizationSchedule.reduce((sum, entry) => sum + entry.principal, 0);
+
+  const pieChartData = [
+    { name: 'Principal', value: totalPrincipal },
+    { name: 'Intérêts', value: totalInterest },
+  ];
+
+  const COLORS = ['#0088FE', '#00C49F'];
 
   const fadeInUp = {
     initial: { opacity: 0, y: 20 },
@@ -97,6 +109,10 @@ const BankLoanSimulator = () => {
                   <BarChart2 className={styles.tabIcon} />
                   Graphique des paiements
                 </Tab>
+                <Tab className={styles.tab}>
+                  <PieChart className={styles.tabIcon} />
+                  Répartition du prêt
+                </Tab>
               </TabList>
 
               <TabPanel>
@@ -104,7 +120,41 @@ const BankLoanSimulator = () => {
               </TabPanel>
               <TabPanel>
                 <div className={styles.chartContainer}>
-                  <MonthlyPaymentsChart data={monthlyPaymentsData} />
+                  <ResponsiveContainer width="100%" height={400}>
+                    <LineChart data={monthlyPaymentsData}>
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis dataKey="month" />
+                      <YAxis />
+                      <Tooltip />
+                      <Legend />
+                      <Line type="monotone" dataKey="paiement" stroke="#8884d8" name="Paiement total" />
+                      <Line type="monotone" dataKey="principal" stroke="#82ca9d" name="Principal" />
+                      <Line type="monotone" dataKey="interest" stroke="#ffc658" name="Intérêts" />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </div>
+              </TabPanel>
+              <TabPanel>
+                <div className={styles.chartContainer}>
+                  <ResponsiveContainer width="100%" height={400}>
+                    <RechartsPieChart>
+                      <Pie
+                        data={pieChartData}
+                        cx="50%"
+                        cy="50%"
+                        labelLine={false}
+                        outerRadius={150}
+                        fill="#8884d8"
+                        dataKey="value"
+                        label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                      >
+                        {pieChartData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                        ))}
+                      </Pie>
+                      <Tooltip />
+                    </RechartsPieChart>
+                  </ResponsiveContainer>
                 </div>
               </TabPanel>
             </Tabs>
