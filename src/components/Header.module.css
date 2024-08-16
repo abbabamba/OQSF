@@ -1,29 +1,39 @@
-/* Header.module.css */
 .header {
-  background-color: #ffffff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
-  transition: all 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.95);
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.scrolled {
+  background-color: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .headerContent {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.75rem 2rem;
+  padding: 1rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.logo img {
-  height: 60px;
+.logo {
+  flex-shrink: 0;
+}
+
+.logoImage {
+  height: 40px;
   width: auto;
   transition: transform 0.3s ease;
 }
 
-.logo img:hover {
+.logoImage:hover {
   transform: scale(1.05);
 }
 
@@ -40,20 +50,16 @@
 
 .menuItem {
   margin-left: 1.5rem;
-  position: relative;
 }
 
 .menuLink {
-  color: #006634;
+  color: #333;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 1rem;
-  transition: all 0.3s ease;
+  transition: color 0.3s ease;
   padding: 0.5rem 0;
-}
-
-.menuLink:hover {
-  color: #fcd116;
+  position: relative;
 }
 
 .menuLink::after {
@@ -63,8 +69,12 @@
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: #fcd116;
+  background-color: #007bff;
   transition: width 0.3s ease;
+}
+
+.menuLink:hover {
+  color: #007bff;
 }
 
 .menuLink:hover::after {
@@ -76,85 +86,41 @@
   background: none;
   border: none;
   cursor: pointer;
-  color: #006634;
-  transition: color 0.3s ease;
-}
-
-.menuButton:hover {
-  color: #fcd116;
-}
-
-/* Barre de couleurs du drapeau sénégalais */
-.header::after {
-  content: '';
-  display: block;
-  height: 3px;
-  background: linear-gradient(to right, 
-    #006634 0%, #006634 33.33%, 
-    #fcd116 33.33%, #fcd116 66.66%, 
-    #ce1126 66.66%, #ce1126 100%);
-  opacity: 0.8;
-  transition: opacity 0.3s ease;
-}
-
-.header:hover::after {
-  opacity: 1;
+  padding: 0.5rem;
+  color: #333;
 }
 
 @media (max-width: 768px) {
   .headerContent {
-    padding: 0.5rem 1rem;
+    padding: 1rem;
+  }
+
+  .nav {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background-color: white;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s ease-in-out;
+  }
+
+  .menuOpen {
+    height: calc(100vh - 60px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .menu {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .menuItem {
+    margin: 1rem 0;
   }
 
   .menuButton {
     display: block;
   }
-
-  .nav {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background-color: #ffffff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    display: none;
-    flex-direction: column;
-    padding: 1rem 0;
-    transition: all 0.3s ease;
-  }
-
-  .menuOpen {
-    display: flex;
-  }
-
-  .menu {
-    flex-direction: column;
-  }
-
-  .menuItem {
-    margin: 0;
-  }
-
-  .menuLink {
-    display: block;
-    padding: 0.75rem 2rem;
-  }
-
-  .menuLink:hover {
-    background-color: #f0f0f0;
-  }
-
-  .menuLink::after {
-    display: none;
-  }
-}
-
-/* Animation pour l'ouverture du menu mobile */
-@keyframes slideDown {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.menuOpen {
-  animation: slideDown 0.3s ease forwards;
 }

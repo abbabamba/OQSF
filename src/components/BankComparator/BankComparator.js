@@ -1,130 +1,293 @@
-import React, { useState, useEffect } from 'react';
-import styles from './BankComparator.module.css';
+import React, { useState, useMemo, useEffect } from 'react';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../common/Table";
+import { Search, ChevronDown, ChevronUp, Moon, Sun, Info, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import banksData from './banks.json';
+import styles from './BankComparator.module.css';
 
-const BankComparator = () => {
-  const [banks, setBanks] = useState([]);
-  const [filteredBanks, setFilteredBanks] = useState([]);
+const ComparateurBanques = () => {
+  const [selectedFields, setSelectedFields] = useState({});
+  const [expandedCategories, setExpandedCategories] = useState({});
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCriteria, setSelectedCriteria] = useState([]);
+  const [sortConfig, setSortConfig] = useState({ key: '', direction: '' });
+  const [selectedBanks, setSelectedBanks] = useState([]);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [showTooltip, setShowTooltip] = useState('');
 
-  const criteriaOptions = [
-    { id: 'conditions_opening', label: "Conditions d'ouverture" },
-    { id: 'conditions_closing', label: 'Conditions de fermeture' },
-    { id: 'account_management', label: 'Gestion de compte' },
-    { id: 'payment_methods', label: 'Moyens de paiement' },
-    { id: 'online_management', label: 'Gestion en ligne' },
-    { id: 'credit_card', label: 'Carte de crédit' },
-    { id: 'mobile_app', label: 'Application mobile' },
-  ];
+  const categories = {
+    "Conditions Générales du Compte": [
+      "Ouverture de compte chèque",
+      "Ouverture de compte d'épargne",
+      "Frais de tenue de compte (mensuel)",
+      "Frais de clôture de compte",
+      "Taux créditeur compte épargne"
+    ],
+    "Services Rattachés au Fonctionnement du Compte": [
+      "Édition de RIB",
+      "Consultation du solde",
+      "Attestation de solde",
+      "Attestation de non engagement",
+      "Frais de recherche de documents"
+    ],
+    "Moyens de Paiement": [
+      "Carte GIM (compte courant)",
+      "Carte Visa Gold"
+    ],
+    "Services Bancaires à Distance": [
+      "Banque en ligne"
+    ],
+    "Opérations de Virement": [
+      "Virement dans la même banque",
+      "Virement vers une autre banque (UEMOA)"
+    ],
+    "Opérations avec l'Étranger": [
+      "Transfert hors UEMOA"
+    ]
+  };
 
-  useEffect(() => {
-    setBanks(banksData.banks);
-    setFilteredBanks(banksData.banks);
-  }, []);
-
-  useEffect(() => {
-    const filtered = banks.filter(bank => 
-      bank.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredBanks(filtered);
-  }, [searchTerm, banks]);
-
-  const handleCriteriaSelection = (criteriaId) => {
-    setSelectedCriteria(prev => 
-      prev.includes(criteriaId)
-        ? prev.filter(id => id !== criteriaId)
-        : [...prev, criteriaId]
+  const toggleBankSelection = (bankName) => {
+    setSelectedBanks(prev => 
+      prev.includes(bankName) 
+        ? prev.filter(b => b !== bankName)
+        : [...prev, bankName]
     );
   };
 
-  const renderCellContent = (bank, criteria) => {
-    const content = bank[criteria];
-    if (typeof content === 'string') {
-      return content;
-    } else if (Array.isArray(content)) {
-      return content.join(', ');
-    } else if (typeof content === 'object' && content !== null) {
-      if (criteria === 'conditions_opening') {
-        return (
-          <div>
-            <strong>Conditions :</strong> {Array.isArray(content.requirements) ? content.requirements.join(', ') : content.requirements}
-            <br />
-            <strong>Procédure :</strong> {content.procedure}
-          </div>
-        );
-      } else if (criteria === 'account_management') {
-        return (
-          <div>
-            <strong>Services :</strong> {Array.isArray(content.services) ? content.services.join(', ') : content.services}
-            <br />
-            <strong>Frais :</strong> {content.fees}
-          </div>
-        );
-      } else if (criteria === 'online_management') {
-        return (
-          <div>
-            <strong>Plateforme :</strong> {content.platform}
-            <br />
-            <strong>Accès :</strong> {content.access}
-          </div>
-        );
+  const toggleDarkMode = () => {
+    setIsDarkMode(prev => !prev);
+  };
+
+  useEffect(() => {
+    document.body.classList.toggle('dark-mode', isDarkMode);
+  }, [isDarkMode]);
+
+  const banksToCompare = selectedBanks.length > 0 ? selectedBanks : banksData.banks.map(bank => bank.name);
+
+  const handleFieldToggle = (category, field) => {
+    setSelectedFields(prev => ({
+      ...prev,
+      [category]: {
+        ...prev[category],
+        [field]: !prev[category]?.[field]
       }
+    }));
+  };
+
+  const handleCategoryToggle = (category) => {
+    const allFieldsSelected = categories[category].every(field => selectedFields[category]?.[field]);
+    const newCategoryState = !allFieldsSelected;
+
+    setSelectedFields(prev => ({
+      ...prev,
+      [category]: categories[category].reduce((acc, field) => {
+        acc[field] = newCategoryState;
+        return acc;
+      }, {})
+    }));
+  };
+
+  const toggleCategory = (category) => {
+    setExpandedCategories(prev => ({
+      ...prev,
+      [category]: !prev[category]
+    }));
+  };
+
+  const isCategoryFullySelected = (category) => {
+    return categories[category].every(field => selectedFields[category]?.[field]);
+  };
+
+  const filteredFields = useMemo(() => {
+    return Object.entries(categories).flatMap(([category, fields]) =>
+      fields.filter(field => {
+        const isSelected = selectedFields[category]?.[field];
+        const matchesSearch = field.toLowerCase().includes(searchTerm.toLowerCase());
+        return isSelected && matchesSearch;
+      }).map(field => ({ category, field }))
+    );
+  }, [categories, selectedFields, searchTerm]);
+
+  const sortedBanks = useMemo(() => {
+    const sortableData = [...banksData.banks];
+    if (sortConfig.key !== '') {
+      sortableData.sort((a, b) => {
+        if (a[sortConfig.key] < b[sortConfig.key]) {
+          return sortConfig.direction === 'ascending' ? -1 : 1;
+        }
+        if (a[sortConfig.key] > b[sortConfig.key]) {
+          return sortConfig.direction === 'ascending' ? 1 : -1;
+        }
+        return 0;
+      });
     }
-    return content === undefined ? 'Non spécifié' : JSON.stringify(content);
+    return sortableData;
+  }, [sortConfig]);
+
+  const requestSort = (key) => {
+    let direction = 'ascending';
+    if (sortConfig.key === key && sortConfig.direction === 'ascending') {
+      direction = 'descending';
+    }
+    setSortConfig({ key, direction });
   };
 
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>Comparateur de Banques</h1>
-      <div className={styles.filters}>
-        <h2>Sélectionnez les critères à comparer</h2>
-        <div className={styles.filterOptions}>
-          {criteriaOptions.map(criteria => (
-            <label key={criteria.id} className={styles.checkboxLabel}>
-              <input 
-                type="checkbox" 
-                checked={selectedCriteria.includes(criteria.id)}
-                onChange={() => handleCriteriaSelection(criteria.id)}
-                className={styles.checkbox}
+    <div className={`${styles.container} ${isDarkMode ? styles.darkMode : ''}`}>
+      <h1 className={styles.title}>Comparateur de banques au Sénégal</h1>
+      
+      <div className={styles.topControls}>
+        <div className={styles.searchContainer}>
+          <div className={styles.searchWrapper}>
+            <input
+              type="text"
+              placeholder="Rechercher un critère..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className={styles.searchInput}
+            />
+            <Search className={styles.searchIcon} size={20} />
+          </div>
+        </div>
+        <button onClick={toggleDarkMode} className={styles.darkModeToggle}>
+          {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+        </button>
+      </div>
+      
+      <div className={styles.bankSelection}>
+        <h3>Sélectionnez les banques à comparer :</h3>
+        <div className={styles.bankCheckboxes}>
+          {sortedBanks.map((bank) => (
+            <label key={bank.name} className={styles.bankCheckbox}>
+              <input
+                type="checkbox"
+                checked={selectedBanks.includes(bank.name)}
+                onChange={() => toggleBankSelection(bank.name)}
               />
-              <span className={styles.checkboxCustom}></span>
-              {criteria.label}
+              {bank.name}
             </label>
           ))}
         </div>
       </div>
-      <input
-        type="text"
-        placeholder="Rechercher une banque..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className={styles.searchInput}
-      />
-      <div className={styles.tableContainer}>
-        <table className={styles.bankTable}>
-          <thead>
-            <tr>
-              <th>Banque</th>
-              {selectedCriteria.map(criteria => (
-                <th key={criteria}>{criteriaOptions.find(option => option.id === criteria).label}</th>
+      
+      <motion.div layout className={styles.categoriesGrid}>
+        {Object.entries(categories).map(([category, fields]) => (
+          <motion.div layout key={category} className={styles.categoryCard}>
+            <button 
+              onClick={() => toggleCategory(category)}
+              className={styles.categoryButton}
+            >
+              <span>{category}</span>
+              <motion.span
+                animate={{ rotate: expandedCategories[category] ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <ChevronDown size={20} />
+              </motion.span>
+            </button>
+            <AnimatePresence>
+              {expandedCategories[category] && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className={styles.categoryContent}
+                >
+                  <div className={styles.selectAllWrapper}>
+                    <input
+                      type="checkbox"
+                      id={`category-${category}`}
+                      checked={isCategoryFullySelected(category)}
+                      onChange={() => handleCategoryToggle(category)}
+                      className={styles.checkbox}
+                    />
+                    <label htmlFor={`category-${category}`} className={styles.selectAllLabel}>
+                      Tout sélectionner
+                    </label>
+                  </div>
+                  {fields.map(field => (
+                    <div key={field} className={styles.fieldWrapper}>
+                      <input
+                        type="checkbox"
+                        id={`${category}-${field}`}
+                        checked={selectedFields[category]?.[field] || false}
+                        onChange={() => handleFieldToggle(category, field)}
+                        className={styles.checkbox}
+                      />
+                      <label htmlFor={`${category}-${field}`} className={styles.fieldLabel}>
+                        {field}
+                        <button
+                          className={styles.infoButton}
+                          onMouseEnter={() => setShowTooltip(field)}
+                          onMouseLeave={() => setShowTooltip('')}
+                        >
+                          <Info size={16} />
+                        </button>
+                        {showTooltip === field && (
+                          <div className={styles.tooltip}>
+                            Explication pour {field}
+                            <button onClick={() => setShowTooltip('')} className={styles.closeTooltip}>
+                              <X size={12} />
+                            </button>
+                          </div>
+                        )}
+                      </label>
+                    </div>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+        ))}
+      </motion.div>
+      
+      <div className={styles.tableWrapper}>
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead className={styles.tableHeaderCell}>Critères de comparaison</TableHead>
+              {banksToCompare.map((bankName) => (
+                <TableHead 
+                  key={bankName}
+                  className={styles.tableHeaderCell}
+                  onClick={() => requestSort(bankName)}
+                >
+                  <div className={styles.bankHeaderContent}>
+                    {bankName}
+                    {sortConfig.key === bankName && (
+                      <span className={styles.sortIcon}>
+                        {sortConfig.direction === 'ascending' ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                      </span>
+                    )}
+                  </div>
+                </TableHead>
               ))}
-            </tr>
-          </thead>
-          <tbody>
-            {filteredBanks.map((bank, index) => (
-              <tr key={index} className={styles.bankRow}>
-                <td className={styles.bankName}>{bank.name}</td>
-                {selectedCriteria.map(criteria => (
-                  <td key={criteria} className={styles.bankInfo}>{renderCellContent(bank, criteria)}</td>
-                ))}
-              </tr>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {filteredFields.map(({ category, field }) => (
+              <TableRow key={`${category}-${field}`} className={styles.tableRow}>
+                <TableCell className={styles.tableCell}>
+                  {field}
+                </TableCell>
+                {banksToCompare.map((bankName) => {
+                  const bank = sortedBanks.find(b => b.name === bankName);
+                  return (
+                    <TableCell key={bankName} className={styles.tableCell}>
+                      {bank[category]?.[field] || "Non disponible"}
+                    </TableCell>
+                  );
+                })}
+              </TableRow>
             ))}
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
       </div>
     </div>
   );
 };
 
-export default BankComparator;
+export default ComparateurBanques;
+
+
+

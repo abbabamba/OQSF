@@ -1,153 +1,159 @@
 {
-    "banks": [
-      {
-        "name": "BICIS",
-        "conditions_opening": {
-          "requirements": [
-            "Photocopie de carte d'identité valide",
-            "Justificatif de domicile",
-            "Deux photos"
-          ],
-          "procedure": "En ligne ou en agence"
-        },
-        "conditions_closing": "Demande en agence et formalités nécessaires",
-        "account_management": {
-          "services": [
-            "Consultation des transactions",
-            "Gestion des comptes via BICISNET"
-          ],
-          "fees": "Variable selon le type de compte"
-        },
-        "payment_methods": ["Carte Visa Classic"],
-        "online_management": {
-          "platform": "BICISNET",
-          "access": "Numéro client et mot de passe"
-        },
-        "credit_card": "Carte Visa Classic",
-        "mobile_app": "Accès via l'application BICISNET"
+  "banks": [
+    {
+      "name": "NSIA",
+      "Conditions Générales du Compte": {
+        "Ouverture de compte chèque": "Gratuit",
+        "Ouverture de compte d'épargne": "Gratuit",
+        "Frais de tenue de compte (mensuel)": "Non spécifié",
+        "Frais de clôture de compte": "Gratuit",
+        "Taux créditeur compte épargne": "3,50%"
       },
-      {
-        "name": "CBAO",
-        "conditions_opening": {
-          "requirements": [
-            "Photocopie de carte d'identité valide",
-            "Justificatif de domicile",
-            "Dépôt initial minimum de 25 000 FCFA"
-          ],
-          "procedure": "En ligne ou en agence"
-        },
-        "conditions_closing": "Demande écrite nécessaire",
-        "account_management": {
-          "services": [
-            "Comptes épargne",
-            "Comptes courants"
-          ],
-          "fees": "Variable selon le type de compte"
-        },
-        "payment_methods": ["Visa Classic", "Visa Gold", "Carte Prépayée Kalpé"],
-        "online_management": {
-          "platform": "e-banking",
-          "access": "SG Connect"
-        },
-        "credit_card": ["Visa Classic", "Visa Gold"],
-        "mobile_app": "SG Connect"
+      "Services Rattachés au Fonctionnement du Compte": {
+        "Édition de RIB": "Gratuit",
+        "Consultation du solde": "Gratuit",
+        "Attestation de solde": "30 000 FCFA",
+        "Attestation de non engagement": "50 000 FCFA",
+        "Frais de recherche de documents": "2 000 FCFA (année en cours), 5 000 FCFA (années antérieures)"
       },
-      {
-        "name": "Banque de l'Habitat du Sénégal (BHS)",
-        "conditions_opening": {
-          "requirements": [
-            "Photocopie de carte d'identité",
-            "Justificatif de domicile"
-          ],
-          "procedure": "En agence"
-        },
-        "conditions_closing": "Compte inactif après 12 mois sans opérations",
-        "account_management": {
-          "services": [
-            "BHSNet"
-          ],
-          "fees": "Variable selon les services"
-        },
-        "payment_methods": ["Cartes prépayées", "Chéquiers"],
-        "online_management": {
-          "platform": "BHSNet",
-          "access": "Espace client"
-        },
-        "credit_card": "Non spécifié",
-        "mobile_app": "Non spécifié"
+      "Moyens de Paiement": {
+        "Carte GIM (compte courant)": "9 000 FCFA TTC/an",
+        "Carte Visa Gold": "65 000 FCFA TTC/an"
       },
-    
-      {
-        "name": "Société Générale Sénégal (SGS)",
-        "conditions_opening": {
-          "requirements": [
-            "Pièce d'identité",
-            "Justificatif de domicile",
-            "Justificatif de revenus"
-          ],
-          "procedure": "En ligne ou en agence"
-        },
-        "conditions_closing": "Demande en agence ou par écrit",
-        "account_management": {
-          "services": [
-            "SG Connect"
-          ],
-          "fees": "1 000 FCFA HT par mois"
-        },
-        "payment_methods": ["Visa Classic Business", "Visa Gold Business"],
-        "online_management": {
-          "platform": "SG Connect",
-          "access": "En ligne"
-        },
-        "credit_card": ["Visa Classic", "Visa Gold"],
-        "mobile_app": "SG Connect"
+      "Services Bancaires à Distance": {
+        "Banque en ligne": "1 000 FCFA (NOVA PLUS)"
       },
-      {
-        "name": "Banque Agricole du Sénégal",
-        "conditions_opening": {
-          "requirements": [
-            "Pièce d'identité",
-            "Justificatif de domicile"
-          ],
-          "procedure": "En agence ou en ligne"
-        },
-        "conditions_closing": "Demande en agence",
-        "account_management": {
-          "services": [
-            "Gestion des comptes via plateforme web"
-          ],
-          "fees": "Variable selon les services"
-        },
-        "payment_methods": ["Cartes de débit", "Cartes de crédit"],
-        "online_management": {
-          "platform": "Application mobile",
-          "access": "Site web et application"
-        },
-        "credit_card": "Cartes de crédit disponibles",
-        "mobile_app": "Application mobile Banque Agricole"
+      "Opérations de Virement": {
+        "Virement dans la même banque": "Gratuit",
+        "Virement vers une autre banque (UEMOA)": "3 500 FCFA"
       },
-      {
-        "name": "Banque Islamique du Sénégal (BIS)",
-        "conditions_opening": {
-          "requirements": "Non spécifié",
-          "procedure": "En agence"
-        },
-        "conditions_closing": "Demande en agence",
-        "account_management": {
-          "services": [
-            "E-banking",
-            "SMS-Banking"
-          ],
-          "fees": "Variable selon les services"
-        },
-        "payment_methods": ["Cartes prépayées"],
-        "online_management": {
-          "platform": "Tamweel Touch",
-          "access": "Application mobile"
-        },
-        "credit_card": "Cartes prépayées",
-        "mobile_app": "Tamweel Touch"
+      "Opérations avec l'Étranger": {
+        "Transfert hors UEMOA": "0,6% (min 25 000 FCFA) + frais"
       }
-    ]
-  }
-  
+    },
+    {
+      "name": "CBEAO",
+      "Conditions Générales du Compte": {
+        "Ouverture de compte chèque": "Gratuit",
+        "Ouverture de compte d'épargne": "Gratuit",
+        "Frais de tenue de compte (mensuel)": "2 667 FCFA (Particuliers), 7 333 FCFA (GIE/association), 20 000 FCFA (GE, TPE, PME)",
+        "Frais de clôture de compte": "Non spécifié",
+        "Taux créditeur compte épargne": "Non spécifié"
+      },
+      "Services Rattachés au Fonctionnement du Compte": {
+        "Édition de RIB": "Gratuit (mensuel)",
+        "Consultation du solde": "Non spécifié",
+        "Attestation de solde": "25 000 FCFA (Particuliers), 50 000 FCFA (Entreprises)",
+        "Attestation de non engagement": "75 000 FCFA",
+        "Frais de recherche de documents": "5 000 FCFA pour 3 pages, 1 000 FCFA par page supplémentaire"
+      },
+      "Moyens de Paiement": {
+        "Carte GIM (compte courant)": "Non spécifié",
+        "Carte Visa Gold": "128 205 FCFA (Entreprises)"
+      },
+      "Services Bancaires à Distance": {
+        "Banque en ligne": "1 000 FCFA (Particuliers), 10 000 FCFA (Entreprises)"
+      },
+      "Opérations de Virement": {
+        "Virement dans la même banque": "Non spécifié",
+        "Virement vers une autre banque (UEMOA)": "4 000 FCFA"
+      },
+      "Opérations avec l'Étranger": {
+        "Transfert hors UEMOA": "Non spécifié"
+      }
+    },
+    {
+      "name": "Orabank",
+      "Conditions Générales du Compte": {
+        "Ouverture de compte chèque": "Gratuit",
+        "Ouverture de compte d'épargne": "Gratuit",
+        "Frais de tenue de compte (mensuel)": "Non spécifié",
+        "Frais de clôture de compte": "Non spécifié",
+        "Taux créditeur compte épargne": "Non spécifié"
+      },
+      "Services Rattachés au Fonctionnement du Compte": {
+        "Édition de RIB": "Non spécifié",
+        "Consultation du solde": "Non spécifié",
+        "Attestation de solde": "Non spécifié",
+        "Attestation de non engagement": "Non spécifié",
+        "Frais de recherche de documents": "Varie selon l'ancienneté"
+      },
+      "Moyens de Paiement": {
+        "Carte GIM (compte courant)": "Non spécifié",
+        "Carte Visa Gold": "Non spécifié"
+      },
+      "Services Bancaires à Distance": {
+        "Banque en ligne": "Non spécifié"
+      },
+      "Opérations de Virement": {
+        "Virement dans la même banque": "Non spécifié",
+        "Virement vers une autre banque (UEMOA)": "30 000 FCFA"
+      },
+      "Opérations avec l'Étranger": {
+        "Transfert hors UEMOA": "Commission + frais (montants non spécifiés)"
+      }
+    },
+    {
+      "name": "BOA",
+      "Conditions Générales du Compte": {
+        "Ouverture de compte chèque": "Gratuit",
+        "Ouverture de compte d'épargne": "Gratuit",
+        "Frais de tenue de compte (mensuel)": "3 600 FCFA (compte chèque), Gratuit (compte épargne)",
+        "Frais de clôture de compte": "Gratuit",
+        "Taux créditeur compte épargne": "3,5%"
+      },
+      "Services Rattachés au Fonctionnement du Compte": {
+        "Édition de RIB": "Gratuit",
+        "Consultation du solde": "Gratuit (aux GAB du client)",
+        "Attestation de solde": "35 000 FCFA",
+        "Attestation de non engagement": "50 000 FCFA",
+        "Frais de recherche de documents": "1 000 FCFA/page"
+      },
+      "Moyens de Paiement": {
+        "Carte GIM (compte courant)": "7 265 FCFA/an (SESAME TURQUOISE)",
+        "Carte Visa Gold": "60 000 FCFA/an (VISA ELITE)"
+      },
+      "Services Bancaires à Distance": {
+        "Banque en ligne": "Gratuit (MyBOA), 1 500 FCFA/mois (BOAweb)"
+      },
+      "Opérations de Virement": {
+        "Virement dans la même banque": "Gratuit",
+        "Virement vers une autre banque (UEMOA)": "20 000 FCFA (STAR-UEMOA)"
+      },
+      "Opérations avec l'Étranger": {
+        "Transfert hors UEMOA": "0,2% (min 15 000 FCFA) + 10 000 FCFA (frais SWIFT)"
+      }
+    },
+    {
+      "name": "Ecobank",
+      "Conditions Générales du Compte": {
+        "Ouverture de compte chèque": "Gratuit",
+        "Ouverture de compte d'épargne": "Gratuit",
+        "Frais de tenue de compte (mensuel)": "3 000 FCFA",
+        "Frais de clôture de compte": "Gratuit",
+        "Taux créditeur compte épargne": "2,5%"
+      },
+      "Services Rattachés au Fonctionnement du Compte": {
+        "Édition de RIB": "Gratuit",
+        "Consultation du solde": "Gratuit",
+        "Attestation de solde": "20 000 FCFA",
+        "Attestation de non engagement": "50 000 FCFA",
+        "Frais de recherche de documents": "5 000 FCFA pour 5 pages"
+      },
+      "Moyens de Paiement": {
+        "Carte GIM (compte courant)": "7 500 FCFA/an",
+        "Carte Visa Gold": "70 000 FCFA TTC/an"
+      },
+      "Services Bancaires à Distance": {
+        "Banque en ligne": "Gratuit"
+      },
+      "Opérations de Virement": {
+        "Virement dans la même banque": "Gratuit",
+        "Virement vers une autre banque (UEMOA)": "5 000 FCFA"
+      },
+      "Opérations avec l'Étranger": {
+        "Transfert hors UEMOA": "1% (min 30 000 FCFA) + frais"
+      }
+    }
+  ]
+}
