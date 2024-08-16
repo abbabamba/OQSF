@@ -154,6 +154,37 @@
       "Opérations avec l'Étranger": {
         "Transfert hors UEMOA": "1% (min 30 000 FCFA) + frais"
       }
+    },
+    {
+      "name": "BDK",
+      "Conditions Générales du Compte": {
+        "Ouverture de compte chèque": "Gratuit",
+        "Ouverture de compte d'épargne": "Gratuit",
+        "Frais de tenue de compte (mensuel)": "5 000 FCFA (BDK CORPORATE & PRIVATE), 3000 FCFA (BDK RETAIL)",
+        "Frais de clôture de compte": "Gratuit",
+        "Taux créditeur compte épargne": "Non spécifié"
+      },
+      "Services Rattachés au Fonctionnement du Compte": {
+        "Édition de RIB": "Non spécifié",
+        "Consultation du solde": "Non spécifié",
+        "Attestation de solde": "Non spécifié",
+        "Attestation de non engagement": "Non spécifié",
+        "Frais de recherche de documents": "30 000 FCFA (0 à 30 jours), 40 000 FCFA (30 à 60 jours), 50 000 FCFA (60 à jours), 100 000 FCFA (Plus d'un an), Supplément par photocopie : Gratuit"
+      },
+      "Moyens de Paiement": {
+        "Carte GIM (compte courant)": "Non spécifié",
+        "Carte Visa Gold": "Non spécifié"
+      },
+      "Services Bancaires à Distance": {
+        "Banque en ligne": "Non spécifié"
+      },
+      "Opérations de Virement": {
+        "Virement dans la même banque": "Non spécifié",
+        "Virement vers une autre banque (UEMOA)": "30 000 FCFA"
+      },
+      "Opérations avec l'Étranger": {
+        "Transfert hors UEMOA": "Commission + frais (montants non spécifiés)"
+      }
     }
   ]
 }
