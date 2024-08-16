@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import LoanForm from './LoanForm';
 import AmortizationTable from './AmortizationTable';
 import { Card } from '../common/Card';
@@ -24,34 +24,46 @@ const BankLoanSimulator = () => {
   } = useLoanCalculator();
 
   const [activeTab, setActiveTab] = useState(0);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    const savedMode = localStorage.getItem('darkMode');
+    return savedMode ? JSON.parse(savedMode) : false;
+  });
 
   const toggleDarkMode = () => {
-    setIsDarkMode(prev => !prev);
+    setIsDarkMode(prevMode => !prevMode);
   };
 
   useEffect(() => {
-    document.body.classList.toggle('dark-mode', isDarkMode);
+    document.documentElement.classList.toggle('dark-mode', isDarkMode);
+    localStorage.setItem('darkMode', JSON.stringify(isDarkMode));
   }, [isDarkMode]);
 
   const formatResult = (value) => {
-    return typeof value === 'number' ? value.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : value;
+    return typeof value === 'number' 
+      ? value.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) 
+      : value;
   };
 
-  const monthlyPaymentsData = amortizationSchedule.map((entry, index) => ({
-    month: index + 1,
-    paiement: entry.payment || 0,
-    principal: entry.principal || 0,
-    interest: entry.interest || 0
-  }));
+  const monthlyPaymentsData = useMemo(() => {
+    return amortizationSchedule.map((entry, index) => ({
+      month: index + 1,
+      paiement: entry.payment || 0,
+      principal: entry.principal || 0,
+      interest: entry.interest || 0
+    }));
+  }, [amortizationSchedule]);
 
-  const totalInterest = amortizationSchedule.reduce((sum, entry) => sum + entry.interest, 0);
-  const totalPrincipal = amortizationSchedule.reduce((sum, entry) => sum + entry.principal, 0);
+  const { totalInterest, totalPrincipal } = useMemo(() => {
+    return amortizationSchedule.reduce((acc, entry) => ({
+      totalInterest: acc.totalInterest + (entry.interest || 0),
+      totalPrincipal: acc.totalPrincipal + (entry.principal || 0)
+    }), { totalInterest: 0, totalPrincipal: 0 });
+  }, [amortizationSchedule]);
 
-  const pieChartData = [
+  const pieChartData = useMemo(() => [
     { name: 'Principal', value: totalPrincipal },
     { name: 'Intérêts', value: totalInterest },
-  ];
+  ], [totalPrincipal, totalInterest]);
 
   const COLORS = ['#0088FE', '#00C49F'];
 
@@ -63,8 +75,8 @@ const BankLoanSimulator = () => {
   };
 
   return (
-    <div className={`${styles.backgroundContainer} ${isDarkMode ? styles.darkMode : ''}`}>
-      <Card className={styles.container}>
+    <div className={`${styles.container} ${isDarkMode ? styles.darkMode : ''}`}>
+        <Card className={styles.container}>
         <motion.h1 className={styles.title} {...fadeInUp}>
           Simulateur de Prêt Bancaire OQSF
         </motion.h1>
@@ -184,7 +196,11 @@ const BankLoanSimulator = () => {
         </AnimatePresence>
 
         <div className={styles.toggleContainer}>
-          <button onClick={toggleDarkMode} className={styles.darkModeToggle}>
+          <button 
+            onClick={toggleDarkMode} 
+            className={styles.darkModeToggle}
+            aria-label={isDarkMode ? "Passer en mode clair" : "Passer en mode sombre"}
+          >
             {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
           </button>
         </div>

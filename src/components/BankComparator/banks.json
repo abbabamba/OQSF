@@ -185,6 +185,102 @@
       "Opérations avec l'Étranger": {
         "Transfert hors UEMOA": "Commission + frais (montants non spécifiés)"
       }
-    }
+    },
+    {
+      "name": "BIS",
+      "Conditions Générales du Compte": {
+        "Ouverture de compte chèque": "Gratuit",
+        "Ouverture de compte d'épargne": "Gratuit",
+        "Frais de tenue de compte (mensuel)": "8 500 FCFA (entreprise individuelle, GIE), 10 000 FCFA (SARL), 12 000 FCFA (SA)",
+        "Frais de clôture de compte": "Non spécifié",
+        "Taux créditeur compte épargne": "Non spécifié"
+      },
+      "Services Rattachés au Fonctionnement du Compte": {
+        "Édition de RIB": "Non spécifié",
+        "Consultation du solde": "Gratuit",
+        "Attestation de solde": "30 000 FCFA",
+        "Attestation de non engagement": "50 000 FCFA",
+        "Frais de recherche de documents": "Non spécifié"
+      },
+      "Moyens de Paiement": {
+        "Carte GIM (compte courant)": "10 257 FCFA/an",
+        "Carte Visa Gold": "76 923 FCFA/an, Reconfection carte et code PIN : 76 923 FCFA"
+      },
+      "Services Bancaires à Distance": {
+        "Banque en ligne": "Non spécifié"
+      },
+      "Opérations de Virement": {
+        "Virement dans la même banque": "Gratuit",
+        "Virement vers une autre banque (UEMOA)": "15 000 FCFA"
+      },
+      "Opérations avec l'Étranger": {
+        "Transfert hors UEMOA": "20 000 FCFA (virement RTGS hors Sénégal)"
+      }
+    },
+    {
+      "name": "CBI",
+      "Conditions Générales du Compte": {
+        "Ouverture de compte chèque": "Gratuit",
+        "Ouverture de compte d'épargne": "Gratuit",
+        "Frais de tenue de compte (mensuel)": "2000 FCFA pour compte chèques et gratuit pour les comptes d'Épargne",
+        "Frais de clôture de compte": "Gratuit",
+        "Taux créditeur compte épargne": "Gratuit"
+      },
+      "Services Rattachés au Fonctionnement du Compte": {
+        "Édition de RIB": "Gratuit",
+        "Consultation du solde": "Gratuit",
+        "Attestation de solde": "15 000 FCFA",
+        "Attestation de non engagement": "50 000 FCFA",
+        "Frais de recherche de documents": "Non spécifié"
+      },
+      "Moyens de Paiement": {
+        "Carte GIM (compte courant)": "Gratuit pour les retraits dans les GAB de la banque, 500 dans les GAB des confrères de l'UEMOA",
+        "Carte Visa Gold": "Coût annuel non spécifié, frais de retraits et gestion selon les conditions des cartes."
+      },
+      "Services Bancaires à Distance": {
+        "Banque en ligne": "Non spécifié"
+      },
+      "Opérations de Virement": {
+        "Virement dans la même banque": "Gratuit",
+        "Virement vers une autre banque (UEMOA)": "Coût non précisé, dépend des conditions de la banque destinataire."
+      },
+      "Opérations avec l'Étranger": {
+        "Transfert hors UEMOA": "Non spécifié"
+      }
+    },
+    {
+      "name": "UBA",
+      "Conditions Générales du Compte": {
+        "Ouverture de compte chèque": "Non spécifié",
+        "Ouverture de compte d'épargne": "Non spécifié",
+        "Frais de tenue de compte (mensuel)": "Non spécifié",
+        "Frais de clôture de compte": "Non spécifié",
+        "Taux créditeur compte épargne": "Non spécifié"
+      },
+        "Services Rattachés au Fonctionnement du Compte": {
+        "Édition de RIB": "Non spécifié",
+        "Consultation du solde": "Gratuit",
+        "Attestation de solde": "Non spécifié",
+        "Attestation de non engagement": "Non spécifié",
+        "Frais de recherche de documents": "5 000 FCFA (0 à 30 jours), 7 500 FCFA (30 à 60 jours), 10 000 FCFA (60 à 90 jours), 20 000 FCFA (Plus d'un an), Supplément par photocopie : 500 FCFA/page"
+      },
+        "Moyens de Paiement": {
+        "Carte GIM (compte courant)": "Retraits aux GAB de la banque : Gratuit, Consultation de solde : Gratuit, Retraits aux GAB d'autres banques : 500 FCFA si réseau GIM",
+        "Carte Visa Gold": "Non spécifié"  
+    },
+      "Services Bancaires à Distance": {
+        "Banque en ligne": "Accès à des services tels que les transferts internes, les paiements de factures, et la consultation de compte"
+      },
+      "Opérations de Virement": {
+        "Virement dans la même banque": "",
+        "Virement vers une autre banque (UEMOA)": ""
+      },
+      
+      "Opérations avec l'Étranger": {
+      "Transfert hors UEMOA": "Frais fixe : Non spécifié, Taxe : 17%, Frais liés à l'autorisation de change : 20 000 FCFA, Frais SWIFT : 10 000 FCFA"
+      }
+
+      }
+    
   ]
 }
