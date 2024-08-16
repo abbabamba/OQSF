@@ -18,7 +18,7 @@ function UserForm({ onSubmit, redirectTo }) {
     setError('');
     setIsLoading(true);
     try {
-      const response = await axios.post('http://localhost:5000/api/users', {
+      const response = await axios.post('http://192.168.1.77:5000/api/users', {
         firstName,
         lastName,
         email

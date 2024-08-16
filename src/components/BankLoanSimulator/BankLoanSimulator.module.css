@@ -20,6 +20,25 @@
 }
 
 
+.darkMode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+
+.darkModeToggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+.toggleContainer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+}
+
 
 .title {
   text-align: center;
