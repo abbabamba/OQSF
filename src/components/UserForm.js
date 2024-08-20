@@ -17,17 +17,23 @@ function UserForm({ onSubmit, redirectTo }) {
     e.preventDefault();
     setError('');
     setIsLoading(true);
+
     try {
-      const response = await axios.post('http://192.168.1.77:5000/api/users', {
+      const response = await axios.post('https://backend-oqsf.onrender.com/api/users', {
         firstName,
         lastName,
         email
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
       });
+      
       onSubmit(response.data);
       setIsSubmitted(true);
       setTimeout(() => navigate(redirectTo), 2000);
     } catch (error) {
-      console.error('Error saving user data:', error);
+      console.error('Error saving user data:', error.response ? error.response.data : error.message);
       setError('Une erreur est survenue lors de l\'enregistrement de vos données. Veuillez réessayer.');
     } finally {
       setIsLoading(false);
