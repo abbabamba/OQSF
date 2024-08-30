@@ -1,5 +1,6 @@
 .container {
   max-width: 1200px;
+  margin-top: 50px;
   margin: 0 auto;
   padding: 2rem 1rem;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -16,6 +17,7 @@
   text-align: center;
   color: #114929;
   margin-bottom: 2rem;
+  margin-top: 5rem;
   transition: color 0.3s ease;
 }
 
@@ -158,14 +160,14 @@
 }
 
 .criteriaColumn {
-  width: 20%; /* Adjust this value as needed */
-  min-width: 200px; /* Ensures a minimum width for readability */
+  width: 20%;
+  min-width: 200px;
   text-align: left;
 }
 
 .bankColumn {
-  width: 16%; /* Adjust this value based on the number of banks */
-  min-width: 120px; /* Ensures a minimum width for readability */
+  width: 16%;
+  min-width: 120px;
   text-align: center;
 }
 
@@ -192,7 +194,6 @@
   padding: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  font-weight: bold;
 }
 
 .darkMode .tableHeaderCell {
@@ -273,6 +274,46 @@
   margin-left: 0.5rem;
 }
 
+.clientTypeSelector {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.clientTypeButton {
+  background-color: #e5e7eb;
+  color: #1f2937;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.clientTypeButton:hover {
+  background-color: #d1d5db;
+}
+
+.active {
+  background-color: #114929;
+  color: #ffffff;
+}
+
+.noticeEntreprises {
+  background-color: #f3f4f6;
+  color: #1f2937;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.darkMode .noticeEntreprises {
+  background-color: #374151;
+  color: #f3f4f6;
+}
+
 @media (max-width: 768px) {
   .title {
     font-size: 2rem;
@@ -284,5 +325,10 @@
 
   .bankCheckboxes {
     flex-direction: column;
+  }
+
+  .clientTypeButton {
+    flex-grow: 1;
+    margin-bottom: 1rem;
   }
 }

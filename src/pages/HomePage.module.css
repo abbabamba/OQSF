@@ -1,63 +1,194 @@
-.pageContainer {
-  background-color: #f8f9fa;
-  overflow-x: hidden;
-  font-family: 'Roboto', sans-serif;
+/* Styles généraux */
+:root {
+  --primary-color: #114929;
+  --secondary-color: #1a7f44;
+  --accent-color: #25a25a;
+  --text-color: #333;
+  --background-color: #f8f9fa;
 }
 
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* Styles de l'en-tête et de la bannière */
 .header {
-  background: linear-gradient(135deg, #114929 0%, #1a7f44 100%);
-  color: white;
-  padding: 6rem 2rem;
-  text-align: center;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  padding: 0;
   position: relative;
   overflow: hidden;
 }
 
-.header::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255,255,255,0.1) 10%, transparent 40%);
-  animation: rotateBackground 20s linear infinite;
+.carouselContainer {
+  position: relative;
+  width: 100%;
+  height: 70vh; /* Vous pouvez ajuster cette hauteur en fonction de vos besoins */
+  min-height: 500px;
+  overflow: hidden;
 }
 
+.bannerImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Utilisez cover pour que l'image remplisse tout le conteneur */
+  transition: transform 0.5s ease-in-out;
+}
+
+
+.carouselButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.carouselButton:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carouselButton.left {
+  left: 20px;
+}
+
+.carouselButton.right {
+  right: 20px;
+}
+
+.carouselDots {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 2;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot.activeDot {
+  background: white;
+  transform: scale(1.2);
+}
+
+
 .headerContent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  z-index: 3;
+  width: 90%;
   max-width: 1000px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-  animation: fadeInUp 1.2s ease-out;
+}
+
+.marqueeContainer {
+  width: 100%;
+  overflow: hidden;
+  padding: 15px 0;
 }
 
 .title {
-  font-size: 3.5rem;
-  font-weight: 900;
-  margin-bottom: 1.5rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  font-size: 2.5rem;
+  color: #1a7f44;
+  font-weight: 800;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   letter-spacing: 1px;
+  white-space: nowrap;
+  display: inline-block;
+  padding-left: 100%;
+  animation: marquee 30s linear infinite;
 }
+
+@keyframes marquee {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-100%, 0);
+  }
+}
+
+/* Pour ralentir l'animation au survol */
+.marqueeContainer:hover .title {
+  animation-play-state: paused;
+}
+
+/* Animation d'entrée */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.marqueeContainer {
+  animation: fadeIn 1s ease-out;
+}
+
+
+
+
 
 .subtitle {
   font-size: 1.5rem;
-  opacity: 0.9;
   font-weight: 300;
   line-height: 1.6;
-  max-width: 600px;
+  max-width: 700px;
   margin: 0 auto;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  animation: scrollUp 3s linear infinite; /* Défilement infini */
+  opacity: 0;
 }
 
+/* Keyframes pour l'animation de défilement continu vers le haut */
+@keyframes scrollUp {
+  0% {
+    transform: translateY(100%); /* Commence en bas */
+    opacity: 0; /* Commence transparent */
+  }
+  50% {
+    opacity: 1; /* Devient visible */
+  }
+  100% {
+    transform: translateY(-100%); /* Défile vers le haut */
+    opacity: 0; /* Re-devient transparent */
+  }
+}
+
+
+/* Styles du contenu principal */
 .mainContent {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 4rem 2rem;
+  padding: 5rem 2rem;
 }
 
 .sectionTitle {
   font-size: 2.5rem;
-  color: #114929;
+  color: var(--primary-color);
   text-align: center;
   margin-bottom: 3rem;
   position: relative;
@@ -69,16 +200,13 @@
   display: block;
   width: 80px;
   height: 4px;
-  background: linear-gradient(90deg, #114929, #1a7f44);
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
   margin: 1rem auto 0;
   border-radius: 2px;
 }
 
-.introSection, .ministerSection, .messageSection, .comparatorSection, .toolsSection {
-  margin-bottom: 6rem;
-}
-
-.introCard, .ministerCard, .messageCard, .comparatorCard, .toolCard {
+/* Styles des cartes */
+.introCard, .comparatorCard, .toolCard {
   background-color: white;
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -86,92 +214,14 @@
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.introCard:hover, .ministerCard:hover, .messageCard:hover, .comparatorCard:hover, .toolCard:hover {
+.introCard:hover, .comparatorCard:hover, .toolCard:hover {
   transform: translateY(-10px) scale(1.02);
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
 }
 
-.introText, .messageText, .comparatorIntro, .toolDescription {
-  font-size: 1.2rem;
-  line-height: 1.9;
-  color: #333;
-}
-
-.comparatorList {
-  list-style-type: none;
-  padding: 0;
-  margin: 2rem 0;
-}
-
-.comparatorList li {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1.5rem;
-  padding: 1rem;
-  background-color: #f1f8e9;
-  border-radius: 10px;
-  transition: all 0.3s ease;
-}
-
-.comparatorList li:hover {
-  background-color: #e8f5e9;
-  transform: translateX(10px);
-}
-
-.icon {
-  margin-right: 1.5rem;
-  color: #1a7f44;
-  font-size: 2rem;
-}
-
-.ministerImage {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  margin: 2rem auto;
-  display: block;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-}
-
-.ministerImage:hover {
-  transform: scale(1.05);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-}
-
-.ministerName {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #114929;
-  text-align: center;
-  margin-top: 1rem;
-}
-
-.toolsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 3rem;
-}
-
-.toolIcon {
-  font-size: 3rem;
-  color: #1a7f44;
-  margin-bottom: 1.5rem;
-  transition: all 0.3s ease;
-}
-
-.toolCard:hover .toolIcon {
-  transform: scale(1.2) rotate(10deg);
-}
-
-.toolTitle {
-  font-size: 1.75rem;
-  color: #114929;
-  margin-bottom: 1rem;
-}
-
+/* Styles des boutons */
 .button {
-  background: linear-gradient(135deg, #1a7f44 0%, #25a25a 100%);
+  background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%);
   color: white;
   padding: 1rem 2rem;
   border-radius: 50px;
@@ -183,10 +233,12 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-top: 2rem;
+  border: none;
+  cursor: pointer;
 }
 
 .button:hover {
-  background: linear-gradient(135deg, #25a25a 0%, #1a7f44 100%);
+  background: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-color) 100%);
   transform: translateY(-3px);
   box-shadow: 0 10px 20px rgba(26, 127, 68, 0.3);
 }
@@ -198,6 +250,18 @@
 
 .button:hover .buttonIcon {
   transform: translateX(5px);
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes fadeInUp {
@@ -222,33 +286,30 @@
   }
 }
 
-@keyframes rotateBackground {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
+/* Media queries pour la responsivité */
 @media (max-width: 768px) {
   .title {
     font-size: 2.5rem;
   }
-  
+
   .subtitle {
     font-size: 1.2rem;
   }
-  
+
   .sectionTitle {
     font-size: 2rem;
   }
-  
-  .introCard, .ministerCard, .messageCard, .comparatorCard, .toolCard {
+
+  .introCard, .comparatorCard, .toolCard {
     padding: 2rem;
   }
-  
+
   .toolsGrid {
     grid-template-columns: 1fr;
+  }
+
+  .carouselContainer {
+    height: 50vh;
+    min-height: 300px;
   }
 }

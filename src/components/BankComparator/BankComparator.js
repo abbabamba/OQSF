@@ -12,6 +12,7 @@ const ComparateurBanques = () => {
   const [selectedBanks, setSelectedBanks] = useState([]);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [showTooltip, setShowTooltip] = useState('');
+  const [clientType, setClientType] = useState('particuliers'); // Nouvel état pour le type de client
 
   const categories = {
     "Conditions Générales du Compte": [
@@ -133,171 +134,166 @@ const ComparateurBanques = () => {
   return (
     <div className={`${styles.container} ${isDarkMode ? styles.darkMode : ''}`}>
       <h1 className={styles.title}>Comparateur de banques au Sénégal</h1>
-      
-      <div className={styles.topControls}>
-        <div className={styles.searchContainer}>
-          <div className={styles.searchWrapper}>
-            <input
-              type="text"
-              placeholder="Rechercher un critère..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className={styles.searchInput}
-            />
-            <Search className={styles.searchIcon} size={20} />
-          </div>
-        </div>
-        <button onClick={toggleDarkMode} className={styles.darkModeToggle}>
-          {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+
+      <div className={styles.clientTypeSelector}>
+        <button
+          className={`${styles.clientTypeButton} ${clientType === 'particuliers' ? styles.active : ''}`}
+          onClick={() => setClientType('particuliers')}
+        >
+          Particuliers
+        </button>
+        <button
+          className={`${styles.clientTypeButton} ${clientType === 'entreprises' ? styles.active : ''}`}
+          onClick={() => setClientType('entreprises')}
+        >
+          Entreprises/ONG
         </button>
       </div>
-      
-      <div className={styles.bankSelection}>
-        <h3>Sélectionnez les banques à comparer :</h3>
-        <div className={styles.bankCheckboxes}>
-          {sortedBanks.map((bank) => (
-            <label key={bank.name} className={styles.bankCheckbox}>
-              <input
-                type="checkbox"
-                checked={selectedBanks.includes(bank.name)}
-                onChange={() => toggleBankSelection(bank.name)}
-              />
-              {bank.name}
-            </label>
-          ))}
-        </div>
-      </div>
-      
-      <motion.div layout className={styles.categoriesGrid}>
-        {Object.entries(categories).map(([category, fields]) => (
-          <motion.div layout key={category} className={styles.categoryCard}>
-            <button 
-              onClick={() => toggleCategory(category)}
-              className={styles.categoryButton}
-            >
-              <span>{category}</span>
-              <motion.span
-                animate={{ rotate: expandedCategories[category] ? 180 : 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                <ChevronDown size={20} />
-              </motion.span>
-            </button>
-            <AnimatePresence>
-              {expandedCategories[category] && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className={styles.categoryContent}
-                >
-                  <div className={styles.selectAllWrapper}>
-                    <input
-                      type="checkbox"
-                      id={`category-${category}`}
-                      checked={isCategoryFullySelected(category)}
-                      onChange={() => handleCategoryToggle(category)}
-                      className={styles.checkbox}
-                    />
-                    <label htmlFor={`category-${category}`} className={styles.selectAllLabel}>
-                      Tout sélectionner
-                    </label>
-                  </div>
-                  {fields.map(field => (
-                    <div key={field} className={styles.fieldWrapper}>
-                      <input
-                        type="checkbox"
-                        id={`${category}-${field}`}
-                        checked={selectedFields[category]?.[field] || false}
-                        onChange={() => handleFieldToggle(category, field)}
-                        className={styles.checkbox}
-                      />
-                      <label htmlFor={`${category}-${field}`} className={styles.fieldLabel}>
-                        {field}
-                        <button
-                          className={styles.infoButton}
-                          onMouseEnter={() => setShowTooltip(field)}
-                          onMouseLeave={() => setShowTooltip('')}
-                        >
-                          <Info size={16} />
-                        </button>
-                        {showTooltip === field && (
-                          <div className={styles.tooltip}>
-                            Explication pour {field}
-                            <button onClick={() => setShowTooltip('')} className={styles.closeTooltip}>
-                              <X size={12} />
-                            </button>
-                          </div>
-                        )}
-                      </label>
-                    </div>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.div>
-        ))}
-      </motion.div>
-      
-      <div className={styles.tableWrapper}>
-  <table>
-    <thead>
-      <tr>
-        <th className={`${styles.tableHeaderCell} ${styles.criteriaColumn}`}>
-          Critères de comparaison
-        </th>
-        {banksToCompare.map((bankName) => (
-          <th
-            key={bankName}
-            className={`${styles.tableHeaderCell} ${styles.bankColumn}`}
-            onClick={() => requestSort(bankName)}
-          >
-            <div className={styles.bankHeaderContent}>
-              {bankName}
-              {sortConfig.key === bankName && (
-                <span className={styles.sortIcon}>
-                  {sortConfig.direction === 'ascending' ? (
-                    <ChevronUp size={16} />
-                  ) : (
-                    <ChevronDown size={16} />
-                  )}
-                </span>
-              )}
-            </div>
-          </th>
-        ))}
-      </tr>
-    </thead>
-    <tbody>
-      {filteredFields.map(({ category, field }) => (
-        <tr key={`${category}-${field}`} className={styles.tableRow}>
-          <td className={`${styles.tableCell} ${styles.criteriaColumn}`}>
-            {field}
-          </td>
-          {banksToCompare.map((bankName) => {
-            const bank = sortedBanks.find((b) => b.name === bankName);
-            return (
-              <td
-                key={bankName}
-                className={`${styles.tableCell} ${styles.bankColumn}`}
-              >
-                {bank[category]?.[field] || 'Non disponible'}
-              </td>
-            );
-          })}
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</div>
 
-    
+      {clientType === 'entreprises' && (
+        <div className={styles.noticeEntreprises}>
+          Les données pour les entreprises/ONG ne sont pas encore disponibles. Elles seront ajoutées prochainement.
+        </div>
+      )}
+
+      {clientType === 'particuliers' && (
+        <>
+          <div className={styles.topControls}>
+            <div className={styles.searchContainer}>
+              <div className={styles.searchWrapper}>
+                <input
+                  type="text"
+                  placeholder="Rechercher un critère..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className={styles.searchInput}
+                />
+                <Search className={styles.searchIcon} size={20} />
+              </div>
+            </div>
+            <button onClick={toggleDarkMode} className={styles.darkModeToggle}>
+              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+          </div>
+
+          <div className={styles.bankSelection}>
+            <h3>Sélectionnez les banques à comparer :</h3>
+            <div className={styles.bankCheckboxes}>
+              {sortedBanks.map((bank) => (
+                <label key={bank.name} className={styles.bankCheckbox}>
+                  <input
+                    type="checkbox"
+                    checked={selectedBanks.includes(bank.name)}
+                    onChange={() => toggleBankSelection(bank.name)}
+                  />
+                  {bank.name}
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <motion.div layout className={styles.categoriesGrid}>
+            {Object.entries(categories).map(([category, fields]) => (
+              <motion.div layout key={category} className={styles.categoryCard}>
+                <button
+                  onClick={() => toggleCategory(category)}
+                  className={styles.categoryButton}
+                >
+                  <span>{category}</span>
+                  <motion.span
+                    animate={{ rotate: expandedCategories[category] ? 180 : 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <ChevronDown size={20} />
+                  </motion.span>
+                </button>
+                <AnimatePresence>
+                  {expandedCategories[category] && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className={styles.categoryContent}
+                    >
+                      <div className={styles.selectAllWrapper}>
+                        <input
+                          type="checkbox"
+                          id={`category-${category}`}
+                          checked={isCategoryFullySelected(category)}
+                          onChange={() => handleCategoryToggle(category)}
+                          className={styles.checkbox}
+                        />
+                        <label htmlFor={`category-${category}`} className={styles.selectAllLabel}>
+                          Tout sélectionner
+                        </label>
+                      </div>
+                      {fields.map(field => (
+                        <div key={field} className={styles.fieldWrapper}>
+                          <input
+                            type="checkbox"
+                            id={`${category}-${field}`}
+                            checked={selectedFields[category]?.[field] || false}
+                            onChange={() => handleFieldToggle(category, field)}
+                            className={styles.checkbox}
+                          />
+                          <label htmlFor={`${category}-${field}`} className={styles.fieldLabel}>
+                            {field}
+                            <button
+                              className={styles.infoButton}
+                              onMouseEnter={() => setShowTooltip(field)}
+                              onMouseLeave={() => setShowTooltip('')}
+                            >
+                              <Info size={16} />
+                            </button>
+                            {showTooltip === field && (
+                              <div className={styles.tooltip}>
+                                Explication pour {field}
+                                <button onClick={() => setShowTooltip('')} className={styles.closeTooltip}>
+                                  <X size={12} />
+                                </button>
+                              </div>
+                            )}
+                          </label>
+                        </div>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {filteredFields.length > 0 && (
+            <div className={styles.comparisonTableContainer}>
+              <table className={styles.comparisonTable}>
+                <thead>
+                  <tr>
+                    <th>Critères</th>
+                    {banksToCompare.map((bankName) => (
+                      <th key={bankName}>{bankName}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredFields.map(({ category, field }) => (
+                    <tr key={`${category}-${field}`}>
+                      <td>{field}</td>
+                      {banksToCompare.map((bankName) => {
+                        const bank = banksData.banks.find(b => b.name === bankName);
+                        const value = bank[category]?.[field];
+                        return <td key={`${bankName}-${category}-${field}`}>{value || 'N/A'}</td>;
+                      })}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </>
+      )}
     </div>
   );
 };
 
 export default ComparateurBanques;
-
-
-

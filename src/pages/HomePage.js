@@ -1,11 +1,28 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card } from '../components/common/Card';
 import { Button } from '../components/common/Button';
-import { ArrowRight, BarChart2, Calculator, Award, Users, TrendingUp } from 'lucide-react';
+import { ArrowRight, BarChart2, Calculator, Award, Users, TrendingUp, ChevronLeft, ChevronRight } from 'lucide-react';
 import styles from './HomePage.module.css';
 import { Link } from 'react-router-dom';
 
+const bannerImages = [
+  require('./images/banner12.png'),
+  require('./images/banner3.png'),
+  require('./images/banner13.png'),
+  require('./images/banner6.png'),
+  require('./images/banner7.png'),
+  require('./images/banner8.png'),
+  require('./images/banner9.png'),
+  require('./images/banner10.png'),
+  require('./images/banner11.png'),
+
+
+
+];
+
 const HomePage = () => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
   useEffect(() => {
     const script = document.createElement('script');
     script.src = "https://bots.easy-peasy.ai/chat.min.js";
@@ -20,15 +37,52 @@ const HomePage = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % bannerImages.length);
+    }, 5000); // Change image every 5 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const nextImage = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % bannerImages.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + bannerImages.length) % bannerImages.length);
+  };
+
   return (
     <div className={styles.pageContainer}>
       <header className={styles.header}>
-        <div className={styles.headerContent}>
-          <h1 className={styles.title}>
-            L'OBSERVATOIRE DE LA QUALITÉ DES SERVICES FINANCIERS /SÉNÉGAL
-          </h1>
-          <p className={styles.subtitle}>Votre partenaire pour une meilleure inclusion financière</p>
+        <div className={styles.carouselContainer}>
+          <img src={bannerImages[currentImageIndex]} alt={`Banner ${currentImageIndex + 1}`} className={styles.bannerImage} />
+          <button onClick={prevImage} className={`${styles.carouselButton} ${styles.left}`}>
+            <ChevronLeft size={24} />
+          </button>
+          <button onClick={nextImage} className={`${styles.carouselButton} ${styles.right}`}>
+            <ChevronRight size={24} />
+          </button>
+          <div className={styles.carouselDots}>
+            {bannerImages.map((_, index) => (
+              <span
+                key={index}
+                className={`${styles.dot} ${index === currentImageIndex ? styles.activeDot : ''}`}
+                onClick={() => setCurrentImageIndex(index)}
+              />
+            ))}
+          </div>
         </div>
+        <div className={styles.headerContent}>
+  <div className={styles.marqueeContainer}>
+    <h1 className={styles.title}>
+      L'OBSERVATOIRE DE LA QUALITÉ DES SERVICES FINANCIERS / SÉNÉGAL
+    </h1>
+  </div>
+  <p className={styles.subtitle}>Votre partenaire pour une meilleure inclusion financière</p>
+</div>
+
       </header>
 
       <main className={styles.mainContent}>
