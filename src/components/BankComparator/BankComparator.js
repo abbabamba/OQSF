@@ -1,8 +1,40 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Search, ChevronDown, ChevronUp, Moon, Sun, Info, X } from 'lucide-react';
+import { Search, ChevronDown, ChevronUp, Moon, Sun, Info, X, CheckCircle, Circle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import banksData from './banks.json';
 import styles from './BankComparator.module.css';
+
+// Déplacez la définition de categories en dehors du composant
+const categoriesData = {
+  "Conditions Générales du Compte": [
+    "Ouverture de compte chèque",
+    "Ouverture de compte d'épargne",
+    "Frais de tenue de compte (mensuel)",
+    "Frais de clôture de compte",
+    "Taux créditeur compte épargne"
+  ],
+  "Services Rattachés au Fonctionnement du Compte": [
+    "Édition de RIB",
+    "Consultation du solde",
+    "Attestation de solde",
+    "Attestation de non engagement",
+    "Frais de recherche de documents"
+  ],
+  "Moyens de Paiement": [
+    "Carte GIM (compte courant)",
+    "Carte Visa Gold"
+  ],
+  "Services Bancaires à Distance": [
+    "Banque en ligne"
+  ],
+  "Opérations de Virement": [
+    "Virement dans la même banque",
+    "Virement vers une autre banque (UEMOA)"
+  ],
+  "Opérations avec l'Étranger": [
+    "Transfert hors UEMOA"
+  ]
+};
 
 const ComparateurBanques = () => {
   const [selectedFields, setSelectedFields] = useState({});
@@ -12,42 +44,18 @@ const ComparateurBanques = () => {
   const [selectedBanks, setSelectedBanks] = useState([]);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [showTooltip, setShowTooltip] = useState('');
-  const [clientType, setClientType] = useState('particuliers'); // Nouvel état pour le type de client
+  const [clientType, setClientType] = useState('particuliers');
 
-  const categories = {
-    "Conditions Générales du Compte": [
-      "Ouverture de compte chèque",
-      "Ouverture de compte d'épargne",
-      "Frais de tenue de compte (mensuel)",
-      "Frais de clôture de compte",
-      "Taux créditeur compte épargne"
-    ],
-    "Services Rattachés au Fonctionnement du Compte": [
-      "Édition de RIB",
-      "Consultation du solde",
-      "Attestation de solde",
-      "Attestation de non engagement",
-      "Frais de recherche de documents"
-    ],
-    "Moyens de Paiement": [
-      "Carte GIM (compte courant)",
-      "Carte Visa Gold"
-    ],
-    "Services Bancaires à Distance": [
-      "Banque en ligne"
-    ],
-    "Opérations de Virement": [
-      "Virement dans la même banque",
-      "Virement vers une autre banque (UEMOA)"
-    ],
-    "Opérations avec l'Étranger": [
-      "Transfert hors UEMOA"
-    ]
-  };
+  // Utilisez useMemo pour mémoriser l'objet categories
+  const categories = useMemo(() => categoriesData, []);
+
+  useEffect(() => {
+    document.body.classList.toggle('dark-mode', isDarkMode);
+  }, [isDarkMode]);
 
   const toggleBankSelection = (bankName) => {
-    setSelectedBanks(prev => 
-      prev.includes(bankName) 
+    setSelectedBanks(prev =>
+      prev.includes(bankName)
         ? prev.filter(b => b !== bankName)
         : [...prev, bankName]
     );
@@ -56,12 +64,6 @@ const ComparateurBanques = () => {
   const toggleDarkMode = () => {
     setIsDarkMode(prev => !prev);
   };
-
-  useEffect(() => {
-    document.body.classList.toggle('dark-mode', isDarkMode);
-  }, [isDarkMode]);
-
-  const banksToCompare = selectedBanks.length > 0 ? selectedBanks : banksData.banks.map(bank => bank.name);
 
   const handleFieldToggle = (category, field) => {
     setSelectedFields(prev => ({
@@ -176,22 +178,6 @@ const ComparateurBanques = () => {
             </button>
           </div>
 
-          <div className={styles.bankSelection}>
-  <h3>Sélectionnez les banques à comparer :</h3>
-  <div className={styles.bankCheckboxes}>
-    {sortedBanks.map((bank) => (
-      <label key={bank.name} className={styles.bankCheckbox}>
-        <input
-          type="checkbox"
-          checked={selectedBanks.includes(bank.name)}
-          onChange={() => toggleBankSelection(bank.name)}
-        />
-        <span>{bank.name}</span>
-      </label>
-    ))}
-  </div>
-</div>
-
           <motion.div layout className={styles.categoriesGrid}>
             {Object.entries(categories).map(([category, fields]) => (
               <motion.div layout key={category} className={styles.categoryCard}>
@@ -204,7 +190,7 @@ const ComparateurBanques = () => {
                     animate={{ rotate: expandedCategories[category] ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <ChevronDown size={20} />
+                    {expandedCategories[category] ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
                   </motion.span>
                 </button>
                 <AnimatePresence>
@@ -270,20 +256,30 @@ const ComparateurBanques = () => {
                 <thead>
                   <tr>
                     <th>Critères</th>
-                    {banksToCompare.map((bankName) => (
-                      <th key={bankName}>{bankName}</th>
+                    {selectedBanks.map((bank) => (
+                      <th key={bank}>
+                        <button onClick={() => toggleBankSelection(bank)} className={styles.bankName}>
+                          {bank} <X size={14} />
+                        </button>
+                      </th>
                     ))}
                   </tr>
                 </thead>
                 <tbody>
                   {filteredFields.map(({ category, field }) => (
-                    <tr key={`${category}-${field}`}>
+                    <tr key={field}>
                       <td>{field}</td>
-                      {banksToCompare.map((bankName) => {
-                        const bank = banksData.banks.find(b => b.name === bankName);
-                        const value = bank[category]?.[field];
-                        return <td key={`${bankName}-${category}-${field}`}>{value || 'N/A'}</td>;
-                      })}
+                      {selectedBanks.map((bank) => (
+                        <td key={`${bank}-${field}`}>
+                          <div className={styles.comparisonCell}>
+                            {banksData.banks.find(b => b.name === bank)?.criteria[field] === 'oui' ? (
+                              <CheckCircle size={16} color="green" />
+                            ) : (
+                              <Circle size={16} color="gray" />
+                            )}
+                          </div>
+                        </td>
+                      ))}
                     </tr>
                   ))}
                 </tbody>

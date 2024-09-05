@@ -37,7 +37,7 @@ function UserForm({ onSubmit, redirectTo }) {
     setError('');
     setIsLoading(true);
     try {
-      const response = await axios.post('https://backend-oqsf.onrender.com/api/users', formData);
+      const response = await axios.post('http://localhost:5000/api/users', formData);
       onSubmit(response.data);
       setIsSubmitted(true);
       setTimeout(() => navigate(redirectTo), 2000);
