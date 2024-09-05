@@ -33,13 +33,25 @@ const Header = () => {
           <ul className={styles.menu}>
             {['Accueil', 'Comparateur', 'Simulateur', 'Contact'].map((item) => (
               <li key={item} className={styles.menuItem}>
-                <Link 
-                  to={item === 'Accueil' ? '/' : `/${item.toLowerCase()}`} 
-                  className={styles.menuLink} 
-                  onClick={toggleMenu}
-                >
-                  {item}
-                </Link>
+                {item === 'Contact' ? (
+                  <a 
+                    href="https://oqsf.sn/?page_id=659" 
+                    className={styles.menuLink} 
+                    onClick={toggleMenu}
+                    target="_blank" // Utilisez cet attribut pour ouvrir dans un nouvel onglet
+                    rel="noopener noreferrer" // Utilisez cet attribut pour des raisons de sécurité
+                  >
+                    {item}
+                  </a>
+                ) : (
+                  <Link 
+                    to={item === 'Accueil' ? '/' : `/${item.toLowerCase()}`} 
+                    className={styles.menuLink} 
+                    onClick={toggleMenu}
+                  >
+                    {item}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>

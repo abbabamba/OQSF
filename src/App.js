@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
-import SimulatorPage from './pages/Simulator';
-import ComparateurPage from './pages/Comparator';
+import SimulatorPage from '././components/BankLoanSimulator/BankLoanSimulator';
+import ComparateurPage from '././components/BankComparator/BankComparator';
 import HomePage from './pages/HomePage';
 import Header from './components/Header';
 import UserForm from './components/UserForm';

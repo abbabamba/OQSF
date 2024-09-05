@@ -17,6 +17,17 @@
   transition: all 0.3s ease;
 }
 
+.input {
+  width: 100%;
+  padding: 0.9rem 1rem 0.9rem 3rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: #f9f9f9;
+  box-sizing: border-box;
+}
+
 .formCard:hover {
   transform: translateY(-5px);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
@@ -54,15 +65,7 @@
   width: 100%;
 }
 
-.input {
-  width: 100%;
-  padding: 0.9rem 1rem 0.9rem 3rem;
-  border: 2px solid #e0e0e0;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  background-color: #f9f9f9;
-}
+
 
 .input:focus {
   outline: none;
