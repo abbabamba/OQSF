@@ -237,17 +237,10 @@ const ComparateurBanques = () => {
                             onChange={() => handleFieldToggle(category, field)}
                             className={styles.checkbox}
                           />
-                          <label htmlFor={`${category}-${field}`} className={styles.fieldLabel}>
-                            {field}
-                            <button
-                              className={styles.infoButton}
-                              onMouseEnter={() => setShowTooltip(field)}
-                              onMouseLeave={() => setShowTooltip('')}
-                            >
-                              <Info size={16} />
-                            </button>
-                            
-                          </label>
+<label htmlFor={`${category}-${field}`} className={styles.fieldLabel}>
+  {field}
+</label>
+
                         </div>
                       ))}
                     </motion.div>
