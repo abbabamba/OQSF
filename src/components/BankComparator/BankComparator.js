@@ -246,14 +246,7 @@ const ComparateurBanques = () => {
                             >
                               <Info size={16} />
                             </button>
-                            {showTooltip === field && (
-                              <div className={styles.tooltip}>
-                                Explication pour {field}
-                                <button onClick={() => setShowTooltip('')} className={styles.closeTooltip}>
-                                  <X size={12} />
-                                </button>
-                              </div>
-                            )}
+                            
                           </label>
                         </div>
                       ))}
