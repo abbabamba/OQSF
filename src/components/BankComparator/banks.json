@@ -94,6 +94,130 @@
       }
     },
     {
+      "name": "Banque Atlantique Côte d'Ivoire (BACI)",
+      "Conditions Générales du Compte": {
+        "Ouverture de compte chèque": "Gratuit",
+        "Ouverture de compte d'épargne": "Gratuit",
+        "Frais de tenue de compte (mensuel)": "12 000 FCFA (Sociétés, entreprises individuelles), 5 000 FCFA (Associations, ONG)",
+        "Frais de clôture de compte": "Gratuit"
+      },
+      "Services Rattachés au Fonctionnement du Compte": {
+        "Édition de RIB": "Gratuit",
+        "Consultation du solde": "Gratuit",
+        "Attestation de solde": "Non spécifié",
+        "Attestation de non engagement": "Non spécifié",
+        "Frais de recherche de documents": "Varie selon ancienneté"
+      },
+      "Moyens de Paiement": {
+        "Chèque barré": "Gratuit",
+        "Carte Visa Electron": "10 000 FCFA/an",
+        "Rejets de chèque pour insuffisance de provision": "30 000 FCFA"
+      },
+      "Services Bancaires à Distance": {
+        "Banque en ligne": "Gratuit"
+      },
+      "Opérations de Virement": {
+        "Virement dans la même banque": "Gratuit",
+        "Virement vers une autre banque (UEMOA)": "2 500 FCFA"
+      },
+      "Opérations avec l'Étranger": {
+        "Transfert hors UEMOA": "Non spécifié"
+      }
+    },
+    {
+      "name": "Banque Sahélo-Saharienne pour l’Investissement et le Commerce (BSIC)",
+      "Conditions Générales du Compte": {
+        "Ouverture de compte chèque": "Gratuit",
+        "Ouverture de compte d'épargne": "Gratuit",
+        "Frais de tenue de compte (mensuel)": "1 200 FCFA (Personnes physiques), 7 500 FCFA (Personnes morales)",
+        "Frais de clôture de compte": "Gratuit"
+      },
+      "Services Rattachés au Fonctionnement du Compte": {
+        "Édition de RIB": "Non spécifié",
+        "Consultation du solde": "Non spécifié",
+        "Attestation de solde": "Non spécifié",
+        "Attestation de non engagement": "Non spécifié",
+        "Frais de recherche de documents": "Non spécifié"
+      },
+      "Moyens de Paiement": {
+        "Chèque barré non endossable": "Gratuit",
+        "Carte interbancaire nationale ou UEMOA": "10 000 FCFA/an"
+      },
+      "Services Bancaires à Distance": {
+        "BSIC NET": "1 000 FCFA par mois"
+      },
+      "Opérations de Virement": {
+        "Virement dans la même banque": "Gratuit",
+        "Virement vers une autre banque (UEMOA)": "2 500 FCFA"
+      },
+      "Opérations avec l'Étranger": {
+        "Transfert hors UEMOA": "Non spécifié"
+      }
+    },
+    {
+      "name": "BGFI Bank Sénégal",
+      "Conditions Générales du Compte": {
+        "Ouverture de compte chèque": "Gratuit",
+        "Ouverture de compte d'épargne": "Gratuit",
+        "Frais de tenue de compte (mensuel)": "5 000 FCFA",
+        "Frais de clôture de compte": "Gratuit",
+        "Taux créditeur compte épargne": "3,5% par an"
+      },
+      "Services Rattachés au Fonctionnement du Compte": {
+        "Édition de RIB": "Gratuit",
+        "Consultation du solde": "Gratuit",
+        "Attestation de solde": "20 000 FCFA",
+        "Attestation de non engagement": "50 000 FCFA",
+        "Frais de recherche de documents": "Gratuit (0 à 90 jours), 15 000 FCFA (plus d'un an)"
+      },
+      "Moyens de Paiement": {
+        "Carte GIM (compte courant)": "Gratuit pour retraits GAB de la banque, 500 FCFA pour GAB d'autres banques de la zone UEMOA",
+        "Carte Visa Gold": "60 000 FCFA/an"
+      },
+      "Services Bancaires à Distance": {
+        "Banque en ligne": "Gratuit (BGFIOnline)"
+      },
+      "Opérations de Virement": {
+        "Virement dans la même banque": "Gratuit",
+        "Virement vers une autre banque (UEMOA)": "10 000 FCFA"
+      },
+      "Opérations avec l'Étranger": {
+        "Transfert hors UEMOA": "20 000 FCFA + frais"
+      }
+    },
+    {
+      "name": "La Banque Outarde",
+      "Conditions Générales du Compte": {
+        "Ouverture de compte chèque": "Gratuit",
+        "Ouverture de compte d'épargne": "Gratuit",
+        "Frais de tenue de compte (mensuel)": "10 000 FCFA (Association), 20 000 FCFA (PME/PMI), 30 000 FCFA (Grande Entreprise)",
+        "Frais de clôture de compte": "Gratuit",
+        "Taux créditeur compte épargne": "Non spécifié"
+      },
+      "Services Rattachés au Fonctionnement du Compte": {
+        "Édition de RIB": "Gratuit (mensuel), 1 000 FCFA par page (autre période)",
+        "Consultation du solde": "Gratuit",
+        "Attestation de solde": "25 000 FCFA",
+        "Attestation de non engagement": "100 000 FCFA",
+        "Frais de recherche de documents": "Variable"
+      },
+      "Moyens de Paiement": {
+        "Carte GIM (compte courant)": "Non spécifié",
+        "Carte Visa Gold": "Non spécifié"
+      },
+      "Services Bancaires à Distance": {
+        "Banque en ligne": "Nous consulter"
+      },
+      "Opérations de Virement": {
+        "Virement dans la même banque": "Gratuit",
+        "Virement vers une autre banque (UEMOA)": "5 000 FCFA"
+      },
+      "Opérations avec l'Étranger": {
+        "Transfert hors UEMOA": "20 000 FCFA + frais"
+      }
+    },        
+    
+    {
       "name": "BOA",
       "Conditions Générales du Compte": {
         "Ouverture de compte chèque": "Gratuit",

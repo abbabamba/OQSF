@@ -177,20 +177,20 @@ const ComparateurBanques = () => {
           </div>
 
           <div className={styles.bankSelection}>
-            <h3>Sélectionnez les banques à comparer :</h3>
-            <div className={styles.bankCheckboxes}>
-              {sortedBanks.map((bank) => (
-                <label key={bank.name} className={styles.bankCheckbox}>
-                  <input
-                    type="checkbox"
-                    checked={selectedBanks.includes(bank.name)}
-                    onChange={() => toggleBankSelection(bank.name)}
-                  />
-                  {bank.name}
-                </label>
-              ))}
-            </div>
-          </div>
+  <h3>Sélectionnez les banques à comparer :</h3>
+  <div className={styles.bankCheckboxes}>
+    {sortedBanks.map((bank) => (
+      <label key={bank.name} className={styles.bankCheckbox}>
+        <input
+          type="checkbox"
+          checked={selectedBanks.includes(bank.name)}
+          onChange={() => toggleBankSelection(bank.name)}
+        />
+        <span>{bank.name}</span>
+      </label>
+    ))}
+  </div>
+</div>
 
           <motion.div layout className={styles.categoriesGrid}>
             {Object.entries(categories).map(([category, fields]) => (

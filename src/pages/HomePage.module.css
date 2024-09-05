@@ -1,10 +1,11 @@
-/* Styles généraux */
+/* Variables et styles de base */
 :root {
   --primary-color: #114929;
   --secondary-color: #1a7f44;
   --accent-color: #25a25a;
   --text-color: #333;
   --background-color: #f8f9fa;
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 body {
@@ -12,12 +13,12 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
-/* Styles de l'en-tête et de la bannière */
+/* En-tête et bannière */
 .header {
   background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-  padding: 0;
   position: relative;
   overflow: hidden;
 }
@@ -25,18 +26,17 @@ body {
 .carouselContainer {
   position: relative;
   width: 100%;
-  height: 70vh; /* Vous pouvez ajuster cette hauteur en fonction de vos besoins */
-  min-height: 500px;
+  height: 80vh;
+  min-height: 600px;
   overflow: hidden;
 }
 
 .bannerImage {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Utilisez cover pour que l'image remplisse tout le conteneur */
-  transition: transform 0.5s ease-in-out;
+  object-fit: cover;
+  transition: transform 0.7s ease-in-out;
 }
-
 
 .carouselButton {
   position: absolute;
@@ -46,14 +46,15 @@ body {
   color: white;
   border: none;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: var(--transition);
   z-index: 2;
+  font-size: 1.5rem;
 }
 
 .carouselButton:hover {
@@ -61,13 +62,8 @@ body {
   transform: translateY(-50%) scale(1.1);
 }
 
-.carouselButton.left {
-  left: 20px;
-}
-
-.carouselButton.right {
-  right: 20px;
-}
+.carouselButton.left { left: 30px; }
+.carouselButton.right { right: 30px; }
 
 .carouselDots {
   position: absolute;
@@ -75,24 +71,23 @@ body {
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 12px;
+  gap: 15px;
   z-index: 2;
 }
 
 .dot {
-  width: 12px;
-  height: 12px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.5);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: var(--transition);
 }
 
 .dot.activeDot {
   background: white;
-  transform: scale(1.2);
+  transform: scale(1.3);
 }
-
 
 .headerContent {
   position: absolute;
@@ -106,18 +101,21 @@ body {
   max-width: 1000px;
 }
 
+/* Titre défilant */
 .marqueeContainer {
   width: 100%;
   overflow: hidden;
-  padding: 15px 0;
+  padding: 20px 0;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
 }
 
 .title {
-  font-size: 2.5rem;
+  font-size: 3rem;
   color: #1a7f44;
   font-weight: 800;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   white-space: nowrap;
   display: inline-block;
   padding-left: 100%;
@@ -125,73 +123,45 @@ body {
 }
 
 @keyframes marquee {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(-100%, 0);
-  }
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-100%, 0); }
 }
 
-/* Pour ralentir l'animation au survol */
 .marqueeContainer:hover .title {
   animation-play-state: paused;
 }
 
-/* Animation d'entrée */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.marqueeContainer {
-  animation: fadeIn 1s ease-out;
-}
-
-
-
-
-
+/* Sous-titre avec défilement */
 .subtitle {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: 300;
   line-height: 1.6;
-  color: red;
-  max-width: 700px;
-  margin: 0 auto;
+  color: #f70606;
+  max-width: 800px;
+  margin: 20px auto 0;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-  animation: scrollUp 3s linear infinite; /* Défilement infini */
+  animation: scrollUp 8s linear infinite;
   opacity: 0;
 }
 
-/* Keyframes pour l'animation de défilement continu vers le haut */
 @keyframes scrollUp {
-  0% {
-    transform: translateY(100%); /* Commence en bas */
-    opacity: 0; /* Commence transparent */
-  }
-  50% {
-    opacity: 1; /* Devient visible */
-  }
-  100% {
-    transform: translateY(-100%); /* Défile vers le haut */
-    opacity: 0; /* Re-devient transparent */
-  }
+  0%, 10% { transform: translateY(100%); opacity: 0; }
+  20%, 80% { transform: translateY(0); opacity: 1; }
+  90%, 100% { transform: translateY(-100%); opacity: 0; }
 }
 
-
-/* Styles du contenu principal */
+/* Contenu principal */
 .mainContent {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 5rem 2rem;
+  padding: 6rem 2rem;
 }
 
 .sectionTitle {
-  font-size: 2.5rem;
+  font-size: 3rem;
   color: var(--primary-color);
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
   position: relative;
   animation: slideInLeft 1s ease-out;
 }
@@ -199,48 +169,83 @@ body {
 .sectionTitle::after {
   content: '';
   display: block;
-  width: 80px;
-  height: 4px;
+  width: 100px;
+  height: 5px;
   background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-  margin: 1rem auto 0;
+  margin: 1.5rem auto 0;
   border-radius: 2px;
 }
 
-/* Styles des cartes */
+/* Cartes */
 .introCard, .comparatorCard, .toolCard {
   background-color: white;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  padding: 3rem;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  padding: 3.5rem;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
 }
 
 .introCard:hover, .comparatorCard:hover, .toolCard:hover {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  transform: translateY(-15px) scale(1.03);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
 }
 
-/* Styles des boutons */
+.introCard::before, .comparatorCard::before, .toolCard::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.introCard:hover::before, .comparatorCard:hover::before, .toolCard:hover::before {
+  opacity: 1;
+  transform: translate3d(30%, 30%, 0) rotate(45deg);
+}
+
+/* Boutons */
 .button {
   background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%);
   color: white;
-  padding: 1rem 2rem;
+  padding: 1.2rem 2.5rem;
   border-radius: 50px;
   display: inline-flex;
   align-items: center;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: var(--transition);
   font-weight: bold;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-top: 2rem;
+  letter-spacing: 1.5px;
+  margin-top: 2.5rem;
   border: none;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: var(--transition);
+}
+
+.button:hover::before {
+  left: 100%;
 }
 
 .button:hover {
-  background: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-color) 100%);
-  transform: translateY(-3px);
+  transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(26, 127, 68, 0.3);
 }
 
@@ -250,67 +255,38 @@ body {
 }
 
 .button:hover .buttonIcon {
-  transform: translateX(5px);
+  transform: translateX(5px) rotate(90deg);
 }
 
 /* Animations */
 @keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(-50px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(50px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-100px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(-100px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
-/* Media queries pour la responsivité */
+/* Media queries */
 @media (max-width: 768px) {
-  .title {
-    font-size: 2.5rem;
-  }
+  .title { font-size: 2.5rem; }
+  .subtitle { font-size: 1.4rem; }
+  .sectionTitle { font-size: 2.5rem; }
+  .introCard, .comparatorCard, .toolCard { padding: 2.5rem; }
+  .carouselContainer { height: 60vh; min-height: 400px; }
+  .carouselButton { width: 50px; height: 50px; font-size: 1.2rem; }
+}
 
-  .subtitle {
-    font-size: 1.2rem;
-  }
-
-  .sectionTitle {
-    font-size: 2rem;
-  }
-
-  .introCard, .comparatorCard, .toolCard {
-    padding: 2rem;
-  }
-
-  .toolsGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .carouselContainer {
-    height: 50vh;
-    min-height: 300px;
-  }
+@media (max-width: 480px) {
+  .title { font-size: 2rem; }
+  .subtitle { font-size: 1.2rem; }
+  .sectionTitle { font-size: 2rem; }
+  .button { padding: 1rem 2rem; }
 }
