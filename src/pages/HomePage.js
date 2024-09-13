@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Card } from '../components/common/Card';
 import { Button } from '../components/common/Button';
 import { ArrowRight, BarChart2, Calculator, Award, Users, TrendingUp, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -15,13 +15,26 @@ const bannerImages = [
   require('./images/banner9.png'),
   require('./images/banner10.png'),
   require('./images/banner11.png'),
-
-
-
 ];
 
 const HomePage = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
+
+  const nextImage = useCallback(() => {
+    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % bannerImages.length);
+  }, []);
+
+  const prevImage = useCallback(() => {
+    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + bannerImages.length) % bannerImages.length);
+  }, []);
+
+  useEffect(() => {
+    if (!isHovering) {
+      const interval = setInterval(nextImage, 5000);
+      return () => clearInterval(interval);
+    }
+  }, [isHovering, nextImage]);
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -37,27 +50,20 @@ const HomePage = () => {
     };
   }, []);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % bannerImages.length);
-    }, 5000); // Change image every 5 seconds
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const nextImage = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % bannerImages.length);
-  };
-
-  const prevImage = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + bannerImages.length) % bannerImages.length);
-  };
-
   return (
     <div className={styles.pageContainer}>
       <header className={styles.header}>
-        <div className={styles.carouselContainer}>
-          <img src={bannerImages[currentImageIndex]} alt={`Banner ${currentImageIndex + 1}`} className={styles.bannerImage} />
+        <div 
+          className={styles.carouselContainer}
+          onMouseEnter={() => setIsHovering(true)}
+          onMouseLeave={() => setIsHovering(false)}
+        >
+          <div className={styles.headerOverlay}></div>
+          <img 
+            src={bannerImages[currentImageIndex]} 
+            alt={`Banner ${currentImageIndex + 1}`} 
+            className={styles.bannerImage} 
+          />
           <button onClick={prevImage} className={`${styles.carouselButton} ${styles.left}`}>
             <ChevronLeft size={24} />
           </button>
@@ -75,14 +81,13 @@ const HomePage = () => {
           </div>
         </div>
         <div className={styles.headerContent}>
-  <div className={styles.marqueeContainer}>
-    <h1 className={styles.title}>
-      L'OBSERVATOIRE DE LA QUALITÉ DES SERVICES FINANCIERS / SÉNÉGAL
-    </h1>
-  </div>
-  <p className={styles.subtitle}>Votre partenaire pour une meilleure inclusion financière</p>
-</div>
-
+          <div className={styles.marqueeContainer}>
+            <h1 className={styles.title}>
+              L'OBSERVATOIRE DE LA QUALITÉ DES SERVICES FINANCIERS / SÉNÉGAL
+            </h1>
+          </div>
+          <p className={styles.subtitle}>Votre partenaire pour une meilleure inclusion financière</p>
+        </div>
       </header>
 
       <main className={styles.mainContent}>
