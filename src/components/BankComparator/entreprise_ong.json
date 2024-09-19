@@ -2,6 +2,7 @@
     
         {
             "name": "BOA",
+            "logoUrl": "/logos/boa.png",
             "Conditions Générales du Compte Entreprises": {
                 "Ouverture de compte chèque": "Gratuit",
                 "Ouverture de compte épargne": "Gratuit",
@@ -59,6 +60,7 @@
         },
         {
             "name": "Ecobank",
+            "logoUrl": "/logos/ecobank.png",
             "Conditions Générales du Compte Entreprises": {
                 "Ouverture de compte chèque": "Gratuit",
                 "Ouverture de compte épargne": "Gratuit",
@@ -110,6 +112,7 @@
         },
         {
             "name": "NSIA",
+            "logoUrl": "/logos/nsia.png",
             "Conditions Générales du Compte Entreprises": {
                 "Ouverture de compte chèque": "Gratuit",
                 "Ouverture de compte épargne": "Gratuit",
@@ -166,6 +169,7 @@
         },
         {
             "name": "CBAO",
+            "logoUrl": "/logos/cbao.png",
             "Conditions Générales du Compte Entreprises": {
                 "Ouverture de compte chèque": "Gratuit",
                 "Ouverture de compte épargne": "Gratuit",
@@ -219,6 +223,7 @@
         },
     {
         "name": "BACI",
+        "logoUrl": "/logos/baci.png",
         "Conditions Générales du Compte Entreprises": {
             "Ouverture de compte chèque": "Gratuit",
             "Ouverture de compte épargne": "Gratuit",
@@ -275,6 +280,7 @@
     },
     {
         "name": "BDK",
+        "logoUrl": "/logos/bdk.png",
         "Conditions Générales du Compte Entreprises": {
             "Ouverture de compte chèque": "Gratuit",
             "Ouverture de compte épargne": "Gratuit",
@@ -330,6 +336,7 @@
     },
     {
         "name": "BIS",
+        "logoUrl": "/logos/bis.png",
         "Conditions Générales du Compte Entreprises": {
             "Ouverture de compte chèque": "Gratuit",
             "Ouverture de compte épargne": "Gratuit",
@@ -390,6 +397,64 @@
             "Frais de mise en place de prélèvement automatique": "Non mentionné",
             "Frais d'exécution de prélèvement": "Non mentionné",
             "Frais d'opposition sur prélèvement": "5 000 FCFA"
+        }
+    },
+    {
+        "name": "Banque Outarde",
+        "logoUrl": "/logos/outard.png",
+        "Conditions Générales du Compte Entreprises": {
+            "Ouverture de compte chèque": "Gratuit",
+            "Ouverture de compte épargne": "Gratuit",
+            "Frais de tenue de compte (mensuel)": {
+                "compte chèque": "3 600 FCFA",
+                "compte épargne": "Gratuit"
+            },
+            "Frais de clôture de compte": "Gratuit"
+        },
+        "Attestations et frais administratifs": {
+            "Attestation d'engagement": "50 000 FCFA",
+            "Attestation d'ouverture/clôture de compte": "35 000 FCFA",
+            "Frais pour procuration": "5 000 FCFA",
+            "Attestation de solde": "Non spécifié",
+            "Attestation de non engagement": "Non spécifié",
+            "Frais de recherche de documents": "Non spécifié"
+        },
+        "Moyens de Paiement": {
+            "Carte GIM (compte courant)": "7 265 FCFA/an (SESAME TURQUOISE)",
+            "Carte Visa Gold": "60 000 FCFA/an",
+            "Carte Visa Business": "Non spécifié",
+            "Carte Visa Corporate": "Non spécifié"
+        },
+        "Opérations de Virement": {
+            "Virement dans la même banque": "Gratuit",
+            "Virement vers une autre banque (UEMOA)": "20 000 FCFA",
+            "Virement international (hors UEMOA)": "Non spécifié"
+        },
+        "Services Bancaires à Distance": {
+            "Banque en ligne": {
+                "MyBOA": "Gratuit",
+                "BOAweb": "1 500 FCFA/mois"
+            },
+            "Services mobiles": "Non spécifié"
+        },
+        "Opérations avec l'Étranger": {
+            "Transfert hors UEMOA": "0,2% (min 15 000 FCFA) + 10 000 FCFA (frais SWIFT)",
+            "Transfert vers l'UEMOA": "Non spécifié"
+        },
+        "Crédits et Financements": {
+            "Crédit à court terme": "Non spécifié",
+            "Crédit à moyen/long terme": "Non spécifié",
+            "Facilités de caisse (découvert)": "Non spécifié"
+        },
+        "Services Additionnels": {
+            "Frais d'assurance associés au compte": "Non spécifié",
+            "Assurance décès accidentel associée au compte": "Non spécifié",
+            "Frais de garde de chèques": "Non spécifié"
+        },
+        "Prélèvements Automatiques": {
+            "Frais de mise en place de prélèvement automatique": "Non spécifié",
+            "Frais d'exécution de prélèvement": "Non spécifié",
+            "Frais d'opposition sur prélèvement": "Non spécifié"
         }
     }
 ]

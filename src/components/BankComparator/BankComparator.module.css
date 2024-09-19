@@ -209,9 +209,18 @@ body {
   color: var(--text-dark);
 }
 
+.bankLogo {
+  width: 40px;
+  height: auto;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+
 .darkMode .bankCheckbox span {
   color: var(--text-light);
 }
+
 
 /* Scrollbar styling */
 .bankCheckboxes::-webkit-scrollbar {

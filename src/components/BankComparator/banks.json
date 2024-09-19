@@ -2,6 +2,7 @@
   "banks": [
     {
       "name": "NSIA",
+      "logoUrl": "/logos/nsia.png",
       "Conditions Générales du Compte": {
         "Ouverture de compte chèque": "Gratuit",
         "Ouverture de compte d'épargne": "Gratuit",
@@ -33,6 +34,7 @@
     },
     {
       "name": "CBAO",
+      "logoUrl": "/logos/cbao.png",
       "Conditions Générales du Compte": {
         "Ouverture de compte chèque": "Gratuit",
         "Ouverture de compte d'épargne": "Gratuit",
@@ -64,6 +66,7 @@
     },
     {
       "name": "Orabank",
+      "logoUrl": "/logos/orabank.png",
       "Conditions Générales du Compte": {
         "Ouverture de compte chèque": "Gratuit",
         "Ouverture de compte d'épargne": "Gratuit",
@@ -95,6 +98,7 @@
     },
     {
       "name": "BACI",
+      "logoUrl": "/logos/baci.png",
       "Conditions Générales du Compte": {
         "Ouverture de compte chèque": "Gratuit",
         "Ouverture de compte d'épargne": "Gratuit",
@@ -126,6 +130,7 @@
     },
     {
       "name": "BSIC",
+      "logoUrl": "/logos/bcis.png",
       "Conditions Générales du Compte": {
         "Ouverture de compte chèque": "Gratuit",
         "Ouverture de compte d'épargne": "Gratuit",
@@ -155,7 +160,8 @@
       }
     },
     {
-      "name": "BGFI Bank Sénégal",
+      "name": "BGFI ",
+      "logoUrl": "/logos/bgfi.png",
       "Conditions Générales du Compte": {
         "Ouverture de compte chèque": "Gratuit",
         "Ouverture de compte d'épargne": "Gratuit",
@@ -186,7 +192,8 @@
       }
     },
     {
-      "name": "La Banque Outarde",
+      "name": " Outarde",
+      "logoUrl": "/logos/outard.png",
       "Conditions Générales du Compte": {
         "Ouverture de compte chèque": "Gratuit",
         "Ouverture de compte d'épargne": "Gratuit",
@@ -219,6 +226,7 @@
     
     {
       "name": "BOA",
+      "logoUrl": "/logos/boa.png",
       "Conditions Générales du Compte": {
         "Ouverture de compte chèque": "Gratuit",
         "Ouverture de compte d'épargne": "Gratuit",
@@ -250,6 +258,7 @@
     },
     {
       "name": "Ecobank",
+      "logoUrl": "/logos/ecobank.png",
       "Conditions Générales du Compte": {
         "Ouverture de compte chèque": "Gratuit",
         "Ouverture de compte d'épargne": "Gratuit",
@@ -281,6 +290,7 @@
     },
     {
       "name": "BDK",
+      "logoUrl": "/logos/bdk.png",
       "Conditions Générales du Compte": {
         "Ouverture de compte chèque": "Gratuit",
         "Ouverture de compte d'épargne": "Gratuit",
@@ -312,6 +322,7 @@
     },
     {
       "name": "BIS",
+      "logoUrl": "/logos/bis.png",
       "Conditions Générales du Compte": {
         "Ouverture de compte chèque": "Gratuit",
         "Ouverture de compte d'épargne": "Gratuit",
@@ -343,6 +354,7 @@
     },
     {
       "name": "CBI",
+      "logoUrl": "/logos/cbi.png",
       "Conditions Générales du Compte": {
         "Ouverture de compte chèque": "Gratuit",
         "Ouverture de compte d'épargne": "Gratuit",
@@ -374,6 +386,7 @@
     },
     {
       "name": "UBA",
+      "logoUrl": "/logos/uba.png",
       "Conditions Générales du Compte": {
         "Ouverture de compte chèque": "Non spécifié",
         "Ouverture de compte d'épargne": "Non spécifié",
