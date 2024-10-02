@@ -457,7 +457,6 @@
             "Frais d'opposition sur prélèvement": "Non spécifié"
         }
     },
-    [
         {
             "name": "Orabank",
             "logoUrl": "/logos/orabank.png",
@@ -597,6 +596,6 @@
                 "Frais d'opposition sur prélèvement": "10 000 FCFA"
             }
         }
-    ]
+ 
     
 ]
