@@ -456,5 +456,147 @@
             "Frais d'exécution de prélèvement": "Non spécifié",
             "Frais d'opposition sur prélèvement": "Non spécifié"
         }
-    }
+    },
+    [
+        {
+            "name": "Orabank",
+            "logoUrl": "/logos/orabank.png",
+            "Conditions Générales du Compte Entreprises": {
+                "Ouverture de compte chèque": "Gratuit",
+                "Ouverture de compte épargne": "Gratuit",
+                "Frais de tenue de compte (mensuel)": "Non spécifié",
+                "Frais de clôture de compte": "Gratuit"
+            },
+            "Attestations et frais administratifs": {
+                "Attestation d'engagement": "60 000 FCFA + TAF",
+                "Attestation d'ouverture de compte": "Gratuit",
+                "Attestation de solde": "30 000 FCFA",
+                "Frais pour procuration": "Gratuit"
+            },
+            "Moyens de Paiement": {
+                "Carte Visa Classic": "2 000 FCFA/mois",
+                "Carte Visa Premier": "7 500 FCFA/mois",
+                "Carte Visa Platinum": "12 500 FCFA/mois"
+            },
+            "Opérations de Virement": {
+                "Virement dans la même banque": "Gratuit",
+                "Virement vers une autre banque (UEMOA)": "15 000 FCFA",
+                "Virement international (hors UEMOA)": "Non spécifié"
+            },
+            "Services Bancaires à Distance": {
+                "Banque en ligne": "1 000 FCFA/mois pour BSIC NET",
+                "Services mobiles": "Non spécifié"
+            },
+            "Opérations avec l'Étranger": {
+                "Transfert vers l'UEMOA": "15 000 FCFA",
+                "Transfert hors UEMOA": "Non spécifié"
+            },
+            "Crédits et Financements": {
+                "Crédit à court terme": "Non spécifié",
+                "Crédit à moyen/long terme": "TBB + marge",
+                "Facilités de caisse": "TBB + 3.5"
+            },
+            "Services Additionnels": {
+                "Frais d'assurance associés au compte": "Non spécifié",
+                "Assurance décès accidentel associée au compte": "Non spécifié"
+            },
+            "Prélèvements Automatiques": {
+                "Frais de mise en place de prélèvement automatique": "Gratuit",
+                "Frais d'opposition sur prélèvement": "Non spécifié"
+            }
+        },
+        {
+            "name": "BSIC",
+            "logoUrl": "/logos/bcis.png",
+            "Conditions Générales du Compte Entreprises": {
+                "Ouverture de compte chèque": "Gratuit",
+                "Ouverture de compte épargne": "Gratuit",
+                "Frais de tenue de compte (mensuel)": "7 500 HT",
+                "Frais de clôture de compte": "Gratuit"
+            },
+            "Attestations et frais administratifs": {
+                "Attestation d'engagement": "30 000 FCFA (Personnes physiques), 60 000 FCFA (Personnes morales)",
+                "Attestation de solde": "50 000 FCFA",
+                "Frais pour procuration": "500 FCFA (Personnes physiques), 1 000 FCFA (Personnes morales)"
+            },
+            "Moyens de Paiement": {
+                "Carte interbancaire": "10 000 FCFA/an",
+                "Carte privative": "Non spécifié"
+            },
+            "Opérations de Virement": {
+                "Virement dans la même banque": "Gratuit",
+                "Virement vers une autre banque (UEMOA)": "2 500 FCFA",
+                "Virement international (hors UEMOA)": "Non spécifié"
+            },
+            "Services Bancaires à Distance": {
+                "Banque en ligne": "Gratuit",
+                "Services mobiles": "Non spécifié"
+            },
+            "Opérations avec l'Étranger": {
+                "Transfert vers l'UEMOA": "Non spécifié",
+                "Transfert hors UEMOA": "Non spécifié"
+            },
+            "Crédits et Financements": {
+                "Crédit à court terme": "TBB + 3.5",
+                "Crédit à moyen/long terme": "TBB + 2.5",
+                "Facilités de caisse": "TBB + 3.5"
+            },
+            "Services Additionnels": {
+                "Frais d'assurance associés au compte": "Variable",
+                "Assurance décès accidentel associée au compte": "Variable"
+            },
+            "Prélèvements Automatiques": {
+                "Frais de mise en place de prélèvement automatique": "Gratuit",
+                "Frais d'opposition sur prélèvement": "Non spécifié"
+            }
+        },
+        {
+            "name": "CBI",
+            "logoUrl": "/logos/cbi.png",
+            "Conditions Générales du Compte Entreprises": {
+                "Ouverture de compte chèque": "Gratuit",
+                "Ouverture de compte épargne": "Gratuit",
+                "Frais de tenue de compte (mensuel)": [
+                    { "type": "Entreprise Individuelle", "amount": "5 000 FCFA" },
+                    { "type": "ONG/Sociétés", "amount": "10 000 FCFA" }
+                ],
+                "Frais de clôture de compte": "Gratuit"
+            },
+            "Attestations et frais administratifs": {
+                "Attestation de solde": "5 000 FCFA",
+                "Attestation de non engagement": "50 000 FCFA"
+            },
+            "Moyens de Paiement": {
+                "Carte interbancaire": "Gratuit pour retraits aux guichets de la banque, 500 FCFA pour autres guichets",
+                "Carte prépayée Coris Cash": "5 000 FCFA"
+            },
+            "Opérations de Virement": {
+                "Virement dans la même banque": "Gratuit",
+                "Virement vers une autre banque (UEMOA)": "10 000 FCFA",
+                "Virement international (hors UEMOA)": "Commission proportionnelle, minimum 20 000 FCFA"
+            },
+            "Services Bancaires à Distance": {
+                "Banque en ligne": "2 500 FCFA/mois",
+                "Services SMS": "1 000 FCFA/mois"
+            },
+            "Opérations avec l'Étranger": {
+                "Transfert vers l'UEMOA": "10 000 FCFA",
+                "Transfert hors UEMOA": "Minimum 20 000 FCFA"
+            },
+            "Crédits et Financements": {
+                "Crédit à court terme": "TBB + 6%",
+                "Crédit à moyen/long terme": "TBB + 6%",
+                "Facilités de caisse": "TBB + 6%"
+            },
+            "Services Additionnels": {
+                "Frais d'assurance associés au compte": "Gratuit",
+                "Assurance décès accidentel associée au compte": "Gratuit"
+            },
+            "Prélèvements Automatiques": {
+                "Frais de mise en place de prélèvement automatique": "Gratuit",
+                "Frais d'opposition sur prélèvement": "10 000 FCFA"
+            }
+        }
+    ]
+    
 ]

@@ -14,7 +14,7 @@ const LoanForm = ({ loanData, handleChange, frequency, setFrequency }) => {
             value={loanData.calculationType}
             onChange={handleChange}
             options={[
-              { value: 'amortization', label: 'Tableau d\'amortissement' },
+              { value: 'amortization', label: 'Échéancier de remboursement' },
               { value: 'loanTerm', label: 'Durée du prêt' },
               { value: 'maxLoanAmount', label: 'Montant maximal du prêt' }
             ]}
