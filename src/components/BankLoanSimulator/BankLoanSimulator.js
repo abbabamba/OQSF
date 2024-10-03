@@ -4,12 +4,11 @@ import AmortizationTable from './AmortizationTable';
 import { Card } from '../common/Card';
 import { Button } from '../common/Button';
 import useLoanCalculator from '../../hooks/useLoanCalculator';
-import { motion, AnimatePresence, color } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
 import { DollarSign, RefreshCw, BarChart2, Table, PieChart, Moon, Sun } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart as RechartsPieChart, Pie, Cell, Label } from 'recharts';
 import styles from './BankLoanSimulator.module.css';
-import { red } from '@mui/material/colors';
 
 const BankLoanSimulator = () => {
   const {
@@ -40,17 +39,25 @@ const BankLoanSimulator = () => {
   }, [isDarkMode]);
 
   const formatCurrency = (value) => {
-    return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'XOF' }).format(value);
+    if (typeof value !== 'number' || isNaN(value)) {
+      return 'N/A';
+    }
+    return new Intl.NumberFormat('fr-FR', {
+      style: 'currency',
+      currency: 'XOF',
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    }).format(value);
   };
 
   const monthlyPaymentsData = useMemo(() => {
     return amortizationSchedule.map((row) => ({
       period: row.period,
       date: row.date,
-      payment: parseFloat(row.payment.replace(/[^\d.-]/g, '')),
-      principal: parseFloat(row.principal.replace(/[^\d.-]/g, '')),
-      interest: parseFloat(row.interest.replace(/[^\d.-]/g, '')),
-      balance: parseFloat(row.balance.replace(/[^\d.-]/g, ''))
+      payment: parseFloat(row.payment),
+      principal: parseFloat(row.principal),
+      interest: parseFloat(row.interest),
+      balance: parseFloat(row.balance)
     }));
   }, [amortizationSchedule]);
 
@@ -101,10 +108,8 @@ const BankLoanSimulator = () => {
                 <DollarSign className={styles.buttonIcon} />
                 Calculer
               </Button>
-              
             </div>
             <p className={styles.nb}>Les résultats de ce simulateur sont fournis à titre indicatif.<br/> Pour avoir les termes exacts de votre crédit, veuillez contacter votre banque ou votre institution financière. </p>
-
           </form>
         </motion.div>
 
@@ -135,26 +140,33 @@ const BankLoanSimulator = () => {
                     <BarChart2 className={styles.tabIcon} />
                     Graphique des paiements
                   </Tab>
-                  
                 </TabList>
 
                 <TabPanel>
-                  <AmortizationTable schedule={amortizationSchedule} />
+                  <AmortizationTable
+                    schedule={monthlyPaymentsData.map(row => ({
+                      ...row,
+                      payment: formatCurrency(row.payment),
+                      principal: formatCurrency(row.principal),
+                      interest: formatCurrency(row.interest),
+                      balance: formatCurrency(row.balance)
+                    }))}
+                  />
                 </TabPanel>
                 <TabPanel>
                   <div className={styles.chartContainer}>
                     <ResponsiveContainer width="100%" height={400}>
                       <BarChart data={monthlyPaymentsData}>
                         <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis 
-                          dataKey="period" 
-                          label={{ value: 'Période', position: 'insideBottom', offset: -5 }} 
+                        <XAxis
+                          dataKey="period"
+                          label={{ value: 'Période', position: 'insideBottom', offset: -5 }}
                         />
-                        <YAxis 
-                          label={{ value: 'Montant (FCFA)', angle: -90, position: 'insideLeft' }} 
+                        <YAxis
+                          label={{ value: 'Montant (FCFA)', angle: -90, position: 'insideLeft' }}
                           tickFormatter={(value) => formatCurrency(value)}
                         />
-                        <Tooltip 
+                        <Tooltip
                           formatter={(value, name) => [formatCurrency(value), name]}
                           labelFormatter={(value) => `Période ${value}`}
                         />
@@ -215,8 +227,8 @@ const BankLoanSimulator = () => {
         </AnimatePresence>
 
         <div className={styles.toggleContainer}>
-          <button 
-            onClick={toggleDarkMode} 
+          <button
+            onClick={toggleDarkMode}
             className={styles.darkModeToggle}
             aria-label={isDarkMode ? "Passer en mode clair" : "Passer en mode sombre"}
           >
