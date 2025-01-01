@@ -160,6 +160,37 @@
       }
     },
     {
+      "name": "CRÉDIT INTERNATIONAL SA",
+      "logoUrl": "/logos/credit_international_sa.jpg",
+      "Conditions Générales du Compte": {
+        "Ouverture de compte chèque": "Gratuit",
+        "Ouverture de compte d'épargne": "Gratuit",
+        "Frais de tenue de compte (mensuel)": "Non spécifié",
+        "Frais de clôture de compte": "Gratuit"
+      },
+      "Services Rattachés au Fonctionnement du Compte": {
+        "Édition de RIB": "Gratuit",
+        "Consultation du solde": "Gratuit",
+        "Attestation de solde": "Gratuit",
+        "Attestation de non engagement": "Gratuit",
+        "Frais de recherche de documents": "Non spécifié"
+      },
+      "Moyens de Paiement": {
+        "Chèque barré non endossable": "Gratuit",
+        "Carte interbancaire nationale ou UEMOA": "Non spécifié"
+      },
+      "Services Bancaires à Distance": {
+        "BSIC NET": "Gratuit"
+      },
+      "Opérations de Virement": {
+        "Virement dans la même banque": "Gratuit",
+        "Virement vers une autre banque (UEMOA)": "Non spécifié"
+      },
+      "Opérations avec l'Étranger": {
+        "Transfert hors UEMOA": "Non spécifié"
+      }
+    },    
+    {
       "name": "BGFI ",
       "logoUrl": "/logos/bgfi.png",
       "Conditions Générales du Compte": {
